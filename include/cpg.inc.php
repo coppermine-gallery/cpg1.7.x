@@ -270,7 +270,7 @@ if (!USER_IS_ADMIN) {
 	if (!$CONFIG['debug_mode']) {
 		$cpgdebugger->stop(); // useless to run debugger because there's no output
 	}
-//	error_reporting(0); // hide all errors for visitors
+	if (!CPG_DVL) error_reporting(0); // hide all errors for visitors
 }
 
 $USER_DATA['allowed_albums'] = [];

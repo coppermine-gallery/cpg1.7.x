@@ -11,6 +11,8 @@
  * @since  1.7.00
  */
 
+define('CPG_DVL', (bool) file_exists('.git/cpgdev') && !is_writable('.git/cpgdev'));
+
 class cpg_debugger {
     // Define variables that store the old error reporting and logging states
     var $old_handler;
@@ -29,7 +31,7 @@ class cpg_debugger {
         $this->basepath_len = strlen(dirname(dirname(__FILE__)));
     }
 
-    function start() {	return;
+    function start() {	if (CPG_DVL) return;
         if (!$this->active) {
             $this->report = [];
             if (CAN_MOD_INI) {
@@ -52,7 +54,7 @@ class cpg_debugger {
         }
     }
 
-    function stop() { return;
+    function stop() { if (CPG_DVL) return;
         if ($this->active) {
             // restore the previous state
             if (!is_bool($this->old_handler) && $this->old_handler) {
@@ -116,7 +118,7 @@ function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
 }
 define('CAN_MOD_INI', strpos(ini_get('disable_functions'), 'ini_set') === FALSE);
 
-error_reporting(E_ALL);
+error_reporting(CPG_DVL ? -1 : E_ALL);
 $cpgdebugger = new cpg_debugger();
 $cpgdebugger->start();
 //EOF
