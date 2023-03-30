@@ -38,17 +38,25 @@ function checkMysqliConnection ()
         if (!function_exists('mysqli_connect')) {
             $GLOBALS['error'] = sprintf($language['no_dbase_support'], 'MySQLi');
             return false;
+        }
 
         // try to connect with given auth parameters
-        } elseif (! $connect_id = @mysqli_connect($config['db_host'],
-                $config['db_user'], $config['db_password']))
-        {
+        try {
+        	$connect_id = mysqli_connect($config['db_host'], $config['db_user'], $config['db_password']);
+        } catch (Exception $e) {
             $GLOBALS['error'] = sprintf($language['no_dbase_conn'], 'MySQLi', 'MySQLi') . '<br />'
                 . $language['dbase_error'] . mysqli_connect_error();
             return false;
+        }
+
+        if (empty($connect_id)) {
+            $GLOBALS['error'] = sprintf($language['no_dbase_conn'], 'MySQLi', 'MySQLi') . '<br />'
+                . $language['dbase_error'] . mysqli_connect_error();
+            return false;
+        }
 
         // if a database is specified, try to select it.
-        } elseif ($db_name != '') {
+        if ($db_name != '') {
             if ( !mysqli_select_db($connect_id, $db_name)) {
                 $GLOBALS['error'] = sprintf($language['dbase_wrong_db'], $db_name);
                 return false;
@@ -243,13 +251,15 @@ function createMysqliDb ($db_name)
     }
     $query = 'CREATE DATABASE ' . $db_name;
     // try to create new db
-    if (!mysqli_query($GLOBALS['mysqli_connection'], $query)) {
+    try {
+    	mysqli_query($GLOBALS['mysqli_connection'], $query);
+    } catch (Exception $e) {
         $GLOBALS['error'] = $language['dbase_no_create_db'] . '<br />'
             . $language['dbase_error'] . '<br />' . mysqli_error($GLOBALS['mysqli_connection']);
         return false;
-    } else {
-        setTmpConfig('db_name', $db_name);
     }
+
+    setTmpConfig('db_name', $db_name);
     return true;
 }
 

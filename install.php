@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2021 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * install.php
- * @since  1.6.16
+ * @since  1.7.00
  */
 
 ########################
@@ -38,7 +38,7 @@ define('STEP_FINALISE', 10);
 $LINEBREAK = "\r\n"; // For compatibility both on Windows as well as *nix
 
 // Set required versions
-$required_php_version = '5.4.0';
+$required_php_version = '7.3.0';
 
 // Set the parameters that normally get populated by the option form
 $displayOption_array = array(
@@ -52,12 +52,12 @@ $CONFIG = array(
 	'userpics' => 'userpics/',
 );
 
-if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
-	$handle = @fopen('include/init.inc.php', 'r');
+if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/cpg.inc.php, as we check the repository against that version number
+	$handle = @fopen('include/cpg.inc.php', 'r');
 	if ($handle == FALSE) {
 		$page_title = 'Could not fopen';
 		html_header();
-		echo 'Could not open the file include/init.inc.php for reading. Make sure it exists and is readable, then try again.';
+		echo 'Could not open the file include/cpg.inc.php for reading. Make sure it exists and is readable, then try again.';
 		html_footer();
 		die;
 	}
@@ -77,7 +77,7 @@ if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMI
 	} else {
 		$page_title = 'Could not determine version number';
 		html_header();
-		echo 'Could not extract the Coppermine version number from the file inlucde/init.inc.php. Please download a fresh copy of the Coppermine package.';
+		echo 'Could not extract the Coppermine version number from the file include/cpg.inc.php. Please download a fresh copy of the Coppermine package.';
 		html_footer();
 		die;
 	}

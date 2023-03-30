@@ -241,7 +241,7 @@ INSERT INTO CPG_config VALUES ('upload_h5a', 'a:11:{s:10:"concurrent";i:3;s:8:"u
 # Dumping data for table `CPG_plugins`
 #
 
-INSERT INTO CPG_plugins (name, path, priority) VALUES ('HTML5 Upload', 'upload_h5a', 0), ('Flash Upload', 'upload_swf', 1), ('Single File Upload', 'upload_sgl', 2);
+INSERT INTO CPG_plugins (name, path, priority) VALUES ('HTML5 Upload', 'upload_h5a', 0), ('Single File Upload', 'upload_sgl', 1);
 
 #
 # Dumping data for table `CPG_filetypes`
