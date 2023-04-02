@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2020 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * lang_check.php
- * @since  1.6.09
+ * @since  1.7.00
  */
 define('IN_COPPERMINE', true);
 
@@ -45,7 +45,6 @@ define('RATEPIC_PHP', true);
 define('REGISTER_PHP', true);
 define('PROFILE_PHP', true);
 define('REVIEWCOM_PHP', true);
-define('SIDEBAR_PHP', true);
 define('SEARCH_PHP', true);
 define('SEARCHNEW_PHP', true);
 define('SEND_ACTIVATION_PHP', true);

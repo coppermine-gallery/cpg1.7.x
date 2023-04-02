@@ -11,7 +11,7 @@
  * @since  1.7.00
  */
 
-define('THEME_IS_V2', 'flex');
+define('THEME_IS_V2', 1);
 define('THEME_WANTS_BODY_CLASS', 1);
 define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 

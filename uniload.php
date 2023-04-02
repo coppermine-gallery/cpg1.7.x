@@ -19,7 +19,12 @@ define('ADMIN_PHP', true);
 
 define('H5U_LOG','h5upload');
 
-//file_put_contents('chunklog.txt', print_r($_POST, true).print_r($_FILES, true), FILE_APPEND);
+require_once 'include/inspekt.php';
+$postC = Inspekt::makePostCage(true);
+
+$matches = $postC->getMatched('method','/^[0-9A-Za-z_]+$/');
+$upload_form = $matches[0];
+$is_simple = ($upload_form == 'upload_sgl') ? true : false;
 
 $upload_log ='';
 function upldLog ($msg)
@@ -80,8 +85,11 @@ function uni_exit ()
 set_exception_handler('uni_exception');
 
 // Call basic functions, etc.
-//require 'include/init.inc.php';
-require 'include/cpg.inc.php';
+if ($is_simple) {
+	require 'include/init.inc.php';
+} else {
+	require 'include/cpg.inc.php';
+}
 require 'include/picmgmt.inc.php';
 
 error_reporting(-1);	ini_set('log_errors', '1');
@@ -119,10 +127,6 @@ function _check_fn_ext ($picname)
 
 	return $matches[2];
 }
-
-$matches = $superCage->post->getMatched('method','/^[0-9A-Za-z_]+$/');
-$upload_form = $matches[0];
-$is_simple = ($upload_form == 'upload_sgl') ? true : false;
 
 // Check to see if user can upload pictures.  Quit with an error if user cannot.
 if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {

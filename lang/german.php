@@ -196,8 +196,6 @@ $lang_main_menu['browse_by_date_lnk'] = 'Nach Datum';
 $lang_main_menu['browse_by_date_title'] = 'Nach dem Datum des Uploads betrachten';
 $lang_main_menu['contact_title'] = 'Tritt mit %s in Kontakt';
 $lang_main_menu['contact_lnk'] = 'Kontakt';
-$lang_main_menu['sidebar_title'] = 'Füge eine Sidebar zu Deinem Browser hinzu';
-$lang_main_menu['sidebar_lnk'] = 'Sidebar';
 $lang_main_menu['main_menu'] = 'Hauptmenü';
 $lang_main_menu['sub_menu'] = 'Untermenü';
 
@@ -922,8 +920,6 @@ $lang_admin_php['contact_form_subject_content'] = 'Betreff für eMails, die vom 
 $lang_admin_php['contact_form_sender_email'] = 'Email-Adresse des Benutzers als &quot;von&quot;-Adresse der eMail verwenden';
 $lang_admin_php['allow_no_link'] = 'Zulassen, aber keinen Link anzeigen';
 $lang_admin_php['allow_show_link'] = 'Zulassen und per Link bewerben';
-$lang_admin_php['display_sidebar_user'] = 'Sidebar für registrierte Benutzer';
-$lang_admin_php['display_sidebar_guest'] = 'Sidebar für Gäste';
 $lang_admin_php['do_not_change'] = 'Ändere diese Einstellung auf keinen Fall, wenn Du nicht ganz genau weisst, was Du tust!';
 $lang_admin_php['reset_to_default'] = 'Zurücksetzen auf Werkseinstellung';
 $lang_admin_php['no_change_needed'] = 'Keine Änderung notwendig, Einstellung ist schon auf Werkseinstellung';
@@ -1957,33 +1953,6 @@ $lang_reviewcom_php['unknown_error'] = 'Unbekannter Fehler';
 $lang_reviewcom_php['error_message'] = 'Die zurückgegebene Fehlermeldung war';
 $lang_reviewcom_php['ip_address'] = 'IP-Adresse';
 }
-
-// ------------------------------------------------------------------------- //
-// File sidebar.php
-// ------------------------------------------------------------------------- //
-if (defined('SIDEBAR_PHP')) {
-$lang_sidebar_php['sidebar'] = 'Side-Bar';
-$lang_sidebar_php['install'] = 'Installieren';
-$lang_sidebar_php['install_explain'] = 'Unter den vielen cleveren Methoden, schnellen Zugriff auf die Informationen auf dieser Seite zuzugreifen bieten wir Sidebars für die verbreitesten Browser auf den unterschiedlichsten Betriebssystemen an, damit Du leicht auf die Seiten zugreifen kannst. Hier findest Du Installationsanweisungen für die unterstützten Browser.';
-$lang_sidebar_php['os_browser_detect'] = 'Bestimme Dein Betriebssystem und Deinen Browser';
-$lang_sidebar_php['os_browser_detect_explain'] = 'Das Skript versucht, Dein Betriebssystem und Deinen Browser zu bestimmen - bitte warte einen Augenblick. Falls diese automatische Bestimmung fehlschlägt kannst Du alle möglichen Sidebar-Installationen manuell %seinblenden%s.';
-$lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+';
-$lang_sidebar_php['mozilla_explain'] = 'Wenn Du Mozilla 0.9.4 oder besser benutzt kannst Du %sunsere Sidebar zu Deinen Sidebars hinzufügen%s. Du kannst die Sidebar wieder deinstallieren mit Hilfe des Dialogfelds "Sidebar anpassen" in Mozilla.';
-$lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 und besser auf Mac OS';
-$lang_sidebar_php['ie_mac_explain'] = 'Wenn Du den Internet Explorer 5 oder höher auf MacOS benutzt, %söffne die Sidebar-Seite%s in einem neuen Fenster. Öffne in diesem neuen Fenster den "Page Holder"-Reiter auf der linken Seite des Fensters. Klicke "Hinzufügen". Wenn Du Deine Einstellungen für zukünftige Sessions beibehalten willst, klicke auf "Favoriten" und wähle "Zu Page Holder Favoriten hinzufügen".';
-$lang_sidebar_php['ie_win'] = 'Internet Explorer 5 und besser auf Windows';
-$lang_sidebar_php['ie_win_explain'] = 'Wenn Du den Internet Explorer 5 oder höher unter Windows benutzt kannst Du die Sidebar zu Deiner Links-Werkzeugleiste hinzufügen oder zu Deinen Favoriten, indem Du %shier%s rechts-klickst und "Zu Favoriten hinzufügen" aus dem Kontext-Menü wählst. Dieser Link installiert unsere Sidebar nicht als Standard für Deine Suche, so dass Dein System nicht verändert wird.';
-$lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 auf Windows XP/Vista';
-$lang_sidebar_php['ie7_win_explain'] = 'Wenn Du den Internet Explorer 7 oder höher unter Windows benutzt kannst Du ein Navigations-Popup zu Deiner Links-Werkzeugleiste hinzufügen oder zu Deinen Favoriten, indem Du %shier%s rechts-klickst und "Zu Favoriten hinzufügen" aus dem Kontext-Menü wählst. In früheren Versionen des IE war es möglich, die tatsächliche Sidebar zu installieren, aber im IE7 ist das nicht möglich, ohne komplizierte Hacks der Registry zu benutzen. Es wird empfohlen, einen anderen Browser zu benutzen, wenn Du die tatsächliche Sidebar benutzen willst.';
-$lang_sidebar_php['opera'] = 'Opera 6 und besser';
-$lang_sidebar_php['opera_explain'] = 'Wenn Du Opera benutzt kannst Du %sauf diesen Link klicken%s, um die Sidebar Deinen anderen Sidebars hinzuzufügen. Aktiviere anschließend "Im Panel anzeigen". Die Sidebar kann deinstalliert werden durch rechts-klicken auf den Reiter und anschließend "Löschen" aus dem Kontextmenü wählen.';
-$lang_sidebar_php['additional_options'] = 'Zusätzliche Optionen';
-$lang_sidebar_php['additional_options_explain'] = 'Falls Du einen anderen Browser als den oben angegebenen benutzt klicke %shier%s, um alle Sidebar-Optionen anzuzeigen.';
-$lang_sidebar_php['cannot_add_sidebar'] = 'Sidebar kann nicht hinzugefügt werden! Dein Browser unterstützt diese Methode nicht.'; //JS-alert
-$lang_sidebar_php['search'] = 'Suchen';
-$lang_sidebar_php['reload'] = 'Aktualisieren';
-}
-
 
 // ------------------------------------------------------------------------- //
 // File search.php                                                           //

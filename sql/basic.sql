@@ -95,8 +95,6 @@ INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('display_pic_info', '0');
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 INSERT INTO CPG_config VALUES ('display_reset_boxes_in_config', '0');
-INSERT INTO CPG_config VALUES ('display_sidebar_guest', '1');
-INSERT INTO CPG_config VALUES ('display_sidebar_user', '1');
 INSERT INTO CPG_config VALUES ('display_stats_on_index', '1');
 INSERT INTO CPG_config VALUES ('display_thumbnail_rating', '0');
 INSERT INTO CPG_config VALUES ('display_thumbs_batch_add', '1');

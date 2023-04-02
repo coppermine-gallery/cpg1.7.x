@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * include/upgrader.inc.php
- * @since  1.6.23
+ * @since  1.7.00
  */
 defined('IN_COPPERMINE') or die('Not in Coppermine...');
 
@@ -20,7 +20,7 @@ class CPG_Updater
 	{
 		global $lang_update_php;
 
-		$releases = json_decode($this->getUrlData('https://api.github.com/repos/coppermine-gallery/cpg1.6.x/releases'));
+		$releases = json_decode($this->getUrlData('https://api.github.com/repos/coppermine-gallery/cpg1.7.x/releases'));
 		if (!$releases) {
 			if ($quiet) return;
 			cpg_die(ERROR, $lang_update_php['not_found']?:'Releases of CPG not found at Github', __FILE__, __LINE__);

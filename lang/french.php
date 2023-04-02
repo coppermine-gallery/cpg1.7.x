@@ -184,8 +184,6 @@ $lang_main_menu['browse_by_date_lnk'] = 'Par date';
 $lang_main_menu['browse_by_date_title'] = 'Naviguer par date de téléchargement';
 $lang_main_menu['contact_title'] = 'Entrer en contact avec %s';
 $lang_main_menu['contact_lnk'] = 'Contact';
-$lang_main_menu['sidebar_title'] = 'Ajouter un marque page dans la barre latérale à votre navigateur';
-$lang_main_menu['sidebar_lnk'] = 'Marque page';
 
 $lang_gallery_admin_menu['upl_app_title'] = 'Valider les nouveaux téléchargements';
 $lang_gallery_admin_menu['upl_app_lnk'] = 'Fichiers à valider';
@@ -900,8 +898,6 @@ $lang_admin_php['contact_form_subject_content'] = 'Objet du courriel généré a
 $lang_admin_php['contact_form_sender_email'] = 'Utiliser l\'adresse courriel de l\'expéditeur pour l\'adresse &quot;from&quot; du courriel';
 $lang_admin_php['allow_no_link'] = 'Autoriser mais ne pas afficher de lien';
 $lang_admin_php['allow_show_link'] = 'Autoriser et afficher un lien';
-$lang_admin_php['display_sidebar_user'] = 'Panneau latéral pour utilisateurs enregistrés';
-$lang_admin_php['display_sidebar_guest'] = 'Panneau latéral pour les visiteurs';
 $lang_admin_php['do_not_change'] = 'Ne modifiez ceci que si vous savez vraiment ce que vous faites';
 $lang_admin_php['reset_to_default'] = 'Retour aux valeurs par défaut';
 $lang_admin_php['no_change_needed'] = 'Pas de changements nécessaires, l\'option est déjà à sa valeur par défaut';
@@ -1930,33 +1926,6 @@ if (defined('REVIEWCOM_PHP')) {
  $lang_reviewcom_php['error_message'] = 'Le message d\'erreur retourné était';
  $lang_reviewcom_php['ip_address'] = 'Adresse IP';
 }
-
-// ------------------------------------------------------------------------- //
-// File sidebar.php
-// ------------------------------------------------------------------------- //
-if (defined('SIDEBAR_PHP')) {
- $lang_sidebar_php['sidebar'] = 'Marque page';
- $lang_sidebar_php['install'] = 'installation';
- $lang_sidebar_php['install_explain'] = 'Parmi les méthodes d\'accès rapide aux informations du site, nous vous proposons des signets pour la plupart des navigateurs utilisés par les systèmes d\'exploitation pour accéder rapidement à une page. Vous trouverez ici les informations d\'installation et de paramétrage pour les navigateurs supportés.';
- $lang_sidebar_php['os_browser_detect'] = 'Détection de votre système d\'exploitation et de votre navigateur';
- $lang_sidebar_php['os_browser_detect_explain'] = 'Le script est en train d\'essayer de détecter la version de votre navigateur et de votre système d\'exploitation. Veuillez attendre un instant. Si l\'auto-détection échoue, vous devrez %sActiver%s manuellement toutes les options possibles des volets latéraux.';
- $lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+';
- $lang_sidebar_php['mozilla_explain'] = 'Si vous utilisez Mozilla 0.9.4 ou plus récent, vous pouvez %sajouter votre signet à votre jeu%s. Vous pouvez la désintaller en utilisant la boite de dialogue &quot;Panneau latéral personnalisé&quot; de Mozilla.';
- $lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 et suivants sur Mac OS';
- $lang_sidebar_php['ie_mac_explain'] = 'Si vous utilisez Internet Explorer 5 ou suivant sur MacOS, %souvrez la page de signets%s dans une fenêtre séparée. Dans cette fenêtre ouvrez l\'onglet &quot;Marque page&quot; sur le côté gauche de la fenêtre. Cliquez sur &quot;Ajoutez&quot;. Si vous souhaitez le garder pour un usage futur, cliquez sur &quot;Favoris&quot; et sélectionnez &quot;Ajoutez à mes marque-pages favoris&quot;.';
- $lang_sidebar_php['ie_win'] = 'Internet Explorer 5 et suivants sur Windows';
- $lang_sidebar_php['ie_win_explain'] = 'Si vous utilisez Internet Explorer 5 et suivants avec Windows, vous pouvez ajouter le signet dan votre barre de liens ou l\'ajouter dans vos favoris et en cliquant dessus, vous verrez notre barre affichée à la place de votre barre de recherche habituelle en faisant un click droit %sici%s et en sélectionnant &quot;Ajoutez à mes favoris&quot; depuis le menu contextuel. Ce lien n\'installe pas notre barre de recherche par défaut, il n\'y a donc pas de modifications faites sur votre système.';
- $lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 avec Windows XP/Vista';
- $lang_sidebar_php['ie7_win_explain'] = 'Si vous utilisez Explorer 7 sur Windows, vous pouvez ajouter une fenêtre pop-up à votre barre de navigation ou vous pouvez l\'ajouter à vos favoris en cliquant dessus vous verrez notre barre affichée comme uen fenêtre pop-up en faisant un click droit %sici%s et en sélectionnant &quot;Ajoutez aux favoris&quot; depuis le menu contextuel. Dans les précédentes versions de IE, il était impossible d\'ajouter une barre marque page personnelle, mais avec IE7 vous ne pouvez pas le faire sans appliquer des modifications à la base de registre. Il est recommandé d\'utiliser un autre navigateur si vous voulez utiliser cette barre de marque page.';
- $lang_sidebar_php['opera'] = 'Opera 6 et suivants';
- $lang_sidebar_php['opera_explain'] = 'Si vous utilisez Opera, vous pouvez cliquer %ssur ce lien pour ajouter notre marque page à votre jeuxt%s. Cochez &quot;Montrer dans le panneau&quot;. Vous pouvez désinstaller les marques page en faisant un click droit sur son onglet et en choisissant &quot;Effacez&quot; dans le menu contextuel.';
- $lang_sidebar_php['additional_options'] = 'Options supplémentaires';
- $lang_sidebar_php['additional_options_explain'] = 'Si vous avez un autre navigateur que ceux mentionnée ci-dessus, cliquez %sici%s pour afficher toutes les options possibles.';
- $lang_sidebar_php['cannot_add_sidebar'] = 'Le signet ne peut pas être ajouté. Votre navigateur ne supporte pas cette méthode';
- $lang_sidebar_php['search'] = 'Chercher';
- $lang_sidebar_php['reload'] = 'Recharger';
-}
-
 
 // ----------------------- //
 // File search.php

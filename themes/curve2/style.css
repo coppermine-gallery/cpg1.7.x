@@ -82,6 +82,14 @@ body.nobgimage {
     /* min-height: 95px; */
 }
 
+/* only show logo on the home page */
+.cpg_logo_block_inner div {
+	display: none;
+}
+.BC-index .cpg_logo_block_inner div {
+	display: block;
+}
+
 #cpg_main_block_outer  {
     background-color: #ffffff;
     background-image: url(images/frame_repeat.png);
@@ -154,10 +162,10 @@ body.nobgimage {
     margin-top: 5px;
 }
 
-.menuheight {      /* IE7 */
-    width: 1px;    /* IE7 */
-    height: 95px;  /* IE7 */
-}                  /* IE7 */
+/*.menuheight {
+    width: 1px;
+    height: 95px;
+}*/
 
 
 table {
@@ -1177,4 +1185,10 @@ a:hover.rounded_menu span {
 
 .admin_menu_anim {
     background-image : url(images/button_bg_anim.gif);
+}
+
+/* theme 2 *********************************/
+.alb-img-cels {
+	background-color: #F2F2F2;
+	padding: 0.3rem 0;
 }

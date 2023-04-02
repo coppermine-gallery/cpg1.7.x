@@ -216,28 +216,6 @@ $config_data = array(
       'default_value' => 'curve',
       'force_config'  => '1',
     ),
-    'display_sidebar_user' => array(
-      'type'          => 'radio',
-      'default_value' => '2',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_sidebar&amp;ae=admin_sidebar_end',
-      'options'       => array(
-                           $lang_common['no'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['allow_no_link'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['allow_show_link'],
-                         ),
-      'linebreak'     => '<br />',
-    ),
-    'display_sidebar_guest' => array(
-      'type'          => 'radio',
-      'default_value' => '1',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_sidebar&amp;ae=admin_sidebar_end',
-      'options'       => array(
-                           $lang_common['no'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['allow_no_link'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['allow_show_link'],
-                         ),
-      'linebreak'     => '<br />',
-    ),
     'custom_lnk_name' => array(
       'type'      => 'textfield',
       'default_value' => '',

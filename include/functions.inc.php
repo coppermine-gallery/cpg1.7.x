@@ -5365,52 +5365,6 @@ function array_slice_preserve_keys($array, $offset, $length = null, $preserve_ke
     }
 }
 
-/**
- * memory_get_usage
- * (see comments on http://www.php.net/manual/en/function.memory-get-usage.php)
- *
- *
- * @return amount of memory allocated to PHP in bytes
- */
-if (!function_exists('memory_get_usage')) {
-    // Only define function if it doesn't exist
-    function memory_get_usage()
-    {
-        // All of the replacement methods assume that we can use exec, so let's test first if it isn't disabled
-        $disabled_function = ini_get('disable_functions');
-        if ($disabled_function != '') { // there actually are disabled functions, so let's loop through the list
-            $disabled_function_array = explode(',', $disabled_function);
-            $loopCounter = 0;
-            foreach ($disabled_function_array as $disabled_value) {
-                if (stristr($disabled_value, 'exec') != FALSE) {
-                    $loopCounter++;
-                }
-            }
-            if ($loopCounter != 0) {
-                // exec has been disabled, so we can't use any of the clever surrogates. Return nothing!
-                return;
-            }
-        }
-        if (substr(PHP_OS,0,3)=='WIN') { // If we are running on Windows
-            $output = array();
-            exec( 'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $output );
-            return preg_replace( '/[^0-9]/', '', $output[5] ) * 1024;
-        } else {
-            $pid = getmypid();
-            $output = array();
-            exec("ps -eo%mem,rss,pid | grep $pid", $output);
-            $output = explode('  ', $output[0]);
-            if ($output != '') {
-                return $output[1] * 1024;
-            } else {
-                unset($output);
-                $output = array();
-                exec("ps -o rss -p $pid", $output);
-                return $output[1] *1024;
-            }
-        }
-    }
-}
 
 function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
   global $CONFIG;
@@ -5426,6 +5380,7 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
   }
   return $text;
 }
+
 
 /**
  * cpg_fill_string_array_with_spaces
@@ -5551,25 +5506,6 @@ function cpg_get_guest_token() {
     return md5($CONFIG['site_token'] . $raw_ip);
 }
 
-/**
- * str_ireplace
- *
- * PHP4-replacement, taken from the user comments at http://theserverpages.com/php/manual/en/function.str-ireplace.php
- */
-if (!function_exists('str_ireplace')) {
-    function str_ireplace($search, $replace, $subject) {
-        if (is_array($search)) {
-            foreach ($search as $word) {
-                $words[] = "/" . $word . "/i";
-            }
-        }
-        else {
-            $words = "/" . $search . "/i";
-        }
-        return preg_replace($words, $replace, $subject);
-    }
-}
-
 
 // Check if a an album is password protected album and the user has access rights to that album
 function cpg_pw_protected_album_access($aid) {
@@ -5643,19 +5579,6 @@ function cpg_trim_keywords(&$keywords) {
 
 
 /**
- * Dummy function to avoid error message when using the EXIF library on some systems
- *
- * @param string $str
- * @return string
- */
-if (!function_exists('gettext')) {
-    function gettext($str) {
-        return $str;
-    }
-}
-
-
-/**
  * Strip unneeded EXIF data
  *
  * @param array $exifRawData
@@ -5682,21 +5605,6 @@ function cpg_exif_strip_data($exifRawData, $exif_names) {
         }
     }
     return $exif;
-}
-
-
-/**
- * htmlspecialchars_decode
- *
- * PHP4-replacement, taken from the user comments at http://www.php.net/manual/en/function.htmlspecialchars-decode.php
- *
- * @param string $str
- * @return string
- */
-if (!function_exists('htmlspecialchars_decode')) {
-    function htmlspecialchars_decode($str) {
-        return strtr($str, array_flip(get_html_translation_table(HTML_SPECIALCHARS)));
-    }
 }
 
 

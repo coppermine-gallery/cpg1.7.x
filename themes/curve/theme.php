@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2018 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * themes/curve/theme.php
- * @since  1.6.04
+ * @since  1.7.00
  */
 
 /**  This theme has had redundant CORE items removed **/
@@ -179,7 +179,6 @@ EOT;
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
     addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer,'','{HOME_ICO}','openul');
     addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer,'','{CONTACT_ICO}','innerli');
-    addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer,'','{SIDEBAR_ICO}','innerli');
     addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer,'','{MY_PROF_ICO}','innerli');
     addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer,'','{MEMBERLIST_ICO}','closeul');
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer,'','{MY_GAL_ICO}','openul');
@@ -540,18 +539,12 @@ function theme_main_menu($which)
         if ($CONFIG['contact_form_registered_enable'] == 0) {
           template_extract_block($template_sys_menu, 'contact');
         }
-        if ($CONFIG['display_sidebar_user'] != 2) {
-          template_extract_block($template_sys_menu, 'sidebar');
-        }
 
         list($timestamp, $form_token) = getFormToken();
 
     } else { // visitor is not logged in
         if ($CONFIG['contact_form_guest_enable'] == 0) {
           template_extract_block($template_sys_menu, 'contact');
-        }
-        if ($CONFIG['display_sidebar_guest'] != 2) {
-          template_extract_block($template_sys_menu, 'sidebar');
         }
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
@@ -622,10 +615,6 @@ function theme_main_menu($which)
         '{USR_MODE_ICO}' => cpg_fetch_icon('admin_mode_off', 1),
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-        '{SIDEBAR_TGT}' => "sidebar.php?action=install",
-        '{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
-        '{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
-        '{SIDEBAR_ICO}' => cpg_fetch_icon('sidebar', 1),
         '{UPL_PIC_TGT}' => "upload.php$album_12",
         '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
         '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],

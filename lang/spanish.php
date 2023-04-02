@@ -183,8 +183,6 @@ $lang_main_menu['browse_by_date_lnk'] = 'Por fecha'; // cpg1.5
 $lang_main_menu['browse_by_date_title'] = 'Buscar por fecha de subida mediante un calendario'; // cpg1.5
 $lang_main_menu['contact_title'] = 'Póngase en contacto con %s'; // cpg1.5
 $lang_main_menu['contact_lnk'] = 'Contacto'; // cpg1.5
-$lang_main_menu['sidebar_title'] = 'Añadir una barra lateral a tu buscador'; // cpg1.5
-$lang_main_menu['sidebar_lnk'] = 'Barra lateral'; // cpg1.5
 
 $lang_gallery_admin_menu['upl_app_title'] = 'Aprobar nuevas subidas de los usuarios';
 $lang_gallery_admin_menu['upl_app_lnk'] = 'Aprobar subidas';
@@ -928,8 +926,6 @@ $lang_admin_php['contact_form_subject_content'] = 'Asunto de los correos generad
 $lang_admin_php['contact_form_sender_email'] = 'Usar el correo del remitente en el campo &quot;De&quot;'; // cpg1.5
 $lang_admin_php['allow_no_link'] = 'Permitir, pero no mostrar enlace'; // cpg1.5
 $lang_admin_php['allow_show_link'] = 'Permitir, y promocionar el uso mostrando un enlace'; // cpg1.5
-$lang_admin_php['display_sidebar_user'] = 'Barra lateral para usuarios registrados'; // cpg1.5
-$lang_admin_php['display_sidebar_guest'] = 'Barra lateral para invitados'; // cpg1.5
 $lang_admin_php['do_not_change'] = '¡No lo cambies a menos que REALMENTE sepas lo que haces!'; // cpg1.5
 $lang_admin_php['reset_to_default'] = 'Poner valores por defecto'; // cpg1.5
 $lang_admin_php['no_change_needed'] = 'No ha habido cambios, la opción está en el valor por defecto'; // cpg1.5
@@ -1971,33 +1967,6 @@ $lang_reviewcom_php['unknown_error'] = 'Error desconocido'; // cpg1.5
 $lang_reviewcom_php['error_message'] = 'El mensaje de error devuelto es'; // cpg1.5
 $lang_reviewcom_php['ip_address'] = 'Dirección IP'; // cpg1.5
 }
-
-// ------------------------------------------------------------------------- //
-// File sidebar.php // Traducida 20100503
-// ------------------------------------------------------------------------- //
-if (defined('SIDEBAR_PHP')) {
-$lang_sidebar_php['sidebar'] = 'Barra lateral'; // cpg1.5
-$lang_sidebar_php['install'] = 'instalar'; // cpg1.5
-$lang_sidebar_php['install_explain'] = 'Entre los varios métodos inteligentes de acceder rápidamente al contenido del sitio hay barras laterales para los navegadores más populares sobre varios sistemas operativos para llegar a las páginas más rápidamente. Aquí tiene la información necesaria para instalar (y desinstalar) para los navegadores soportados.'; // cpg1.5
-$lang_sidebar_php['os_browser_detect'] = 'Detectando el sistema operativo y el navegador'; // cpg1.5
-$lang_sidebar_php['os_browser_detect_explain'] = 'Estamos intentando detectar automáticamente el sistema operativo y el navegador que usas - un momento, por favor. Si falla la autodetección a lo mejor quieres %smostrar%s todas las opciones manuales.'; // cpg1.5
-$lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+'; // cpg1.5
-$lang_sidebar_php['mozilla_explain'] = 'Si usas Mozilla 0.9.4 o superior puedes %sañadir nuestra barra lateral%s a las que ya tienes. Podrás desinstalarla con la opción "Presonalizar barra lateral"/"Customize Sidebar".'; // cpg1.5
-$lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 o superior sobre Mac OS'; // cpg1.5
-$lang_sidebar_php['ie_mac_explain'] = 'Si usas Internet Explorer 5 or above on MacOS, %sabre nuestra barra lateral%s en una ventana separada. En esa ventana abre la pestaña "Page Holder" de la izquierda. Pulsa "Añadir". Si la quieres mantener para uso futuro, pulsa en "Favoritos" y selecciona "Add to Page Holder Favorites"/"Añadir a favoritos".'; // cpg1.5
-$lang_sidebar_php['ie_win'] = 'Internet Explorer 5 o superior sobre Windows'; // cpg1.5
-$lang_sidebar_php['ie_win_explain'] = 'Si usas Internet Explorer 5 o superior en Windows, puedes añadir la barra lateral a tu barra de herramientas "Vínculos"; o puedes añadirla a tus favoritos, y al pulsar sobre ella aparecerá en lugar de la ventana de búsqueda - pulsa %saquí%s y seleccionar "Añadir a favoritos" en el menú desplegable. Este enlace no instala nuestra barra como tu barra por defecto, así que no se hacen modificaciones en tu sistema.'; // cpg1.5
-$lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 o superior sobre XP/Vista'; // cpg1.5
-$lang_sidebar_php['ie7_win_explain'] = 'Si usas Internet Explorer 7 en Windows, puedes añadir una ventana emergente de navegación a tu barra de herramientas de "Vínculos"; o puedes añadirla a tus favoritos, y al pulsar sobre ella aparecerá de nuevo como ventana emergente al pulsar %saquí%s y seleccionar "Añadir a favoritos" en el menú desplegable. En versiones anteriores de Internet Explorer era posible añadir una barra lateral real, pero en IE7 no se puede hacer sin aplicar parcheos del registro un tanto complicados. Si quieres una barra lateral de verdad te recomendamos que uses otro navegador.'; // cpg1.5
-$lang_sidebar_php['opera'] = 'Opera 6 y superior'; // cpg1.5
-$lang_sidebar_php['opera_explain'] = 'Si usas Opera, puedes %spulsar este enlace%s para añadir nuestra barra lateral a tus conjuntos. Después marca "Mostrar en panel"/"Show in panel". Puedes desinstalarla pulsando el botón derecho sobre su pestaña y eligiendo "Borrar"/"Delete" del menú desplegable.'; // cpg1.5
-$lang_sidebar_php['additional_options'] = 'Opciones adicionales'; // cpg1.5
-$lang_sidebar_php['additional_options_explain'] = 'Si tienes otro navegador distinto de los mencionados, pulsa %saquí%s para mostrar las opciones posibles.'; // cpg1.5
-$lang_sidebar_php['cannot_add_sidebar'] = '¡No se puede añadir la barra lateral! ¡Tu navegador no la soporta!'; // cpg1.5 // js-alert
-$lang_sidebar_php['search'] = 'Buscar'; // cpg1.5
-$lang_sidebar_php['reload'] = 'Recargar'; // cpg1.5
-}
-
 
 // ------------------------------------------------------------------------- //
 // File search.php // Traducida

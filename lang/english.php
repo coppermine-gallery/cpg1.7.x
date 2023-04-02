@@ -183,8 +183,6 @@ $lang_main_menu['browse_by_date_lnk'] = 'By date';
 $lang_main_menu['browse_by_date_title'] = 'Browse by date uploaded';
 $lang_main_menu['contact_title'] = 'Get in contact with %s';
 $lang_main_menu['contact_lnk'] = 'Contact';
-$lang_main_menu['sidebar_title'] = 'Add a Sidebar to your browser';
-$lang_main_menu['sidebar_lnk'] = 'Sidebar';
 
 $lang_gallery_admin_menu['upl_app_title'] = 'Approve new uploads';
 $lang_gallery_admin_menu['upl_app_lnk'] = 'Upload approval';
@@ -926,8 +924,6 @@ $lang_admin_php['contact_form_subject_content'] = 'Subject line for emails gener
 $lang_admin_php['contact_form_sender_email'] = 'Use the sender\'s email address as &quot;from&quot; address';
 $lang_admin_php['allow_no_link'] = 'allow, but don\'t display link';
 $lang_admin_php['allow_show_link'] = 'allow and promote it by displaying a link';
-$lang_admin_php['display_sidebar_user'] = 'Sidebar for registered users';
-$lang_admin_php['display_sidebar_guest'] = 'Sidebar for guests';
 $lang_admin_php['do_not_change'] = 'Don\'t change this unless you REALLY know what you\'re doing!';
 $lang_admin_php['reset_to_default'] = 'Reset to default';
 $lang_admin_php['no_change_needed'] = 'No change needed, config option already is set to default';
@@ -1968,33 +1964,6 @@ $lang_reviewcom_php['unknown_error'] = 'Unknown error';
 $lang_reviewcom_php['error_message'] = 'The error message returned was';
 $lang_reviewcom_php['ip_address'] = 'IP address';
 }
-
-// ------------------------------------------------------------------------- //
-// File sidebar.php
-// ------------------------------------------------------------------------- //
-if (defined('SIDEBAR_PHP')) {
-$lang_sidebar_php['sidebar'] = 'Side Bar';
-$lang_sidebar_php['install'] = 'install';
-$lang_sidebar_php['install_explain'] = 'Among the many smart access methods to get to information quickly on the site, we provide sidebars for the most popular browsers used on different operating systems to access pages easily. Here you can find setup and uninstall information for the browsers supported.';
-$lang_sidebar_php['os_browser_detect'] = 'Detecting your OS and browser';
-$lang_sidebar_php['os_browser_detect_explain'] = 'The script is trying to detect your operating system and browser version - please wait a second. If auto-detection fails, you might want to %sunhide%s all possible sidebar install options manually.';
-$lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+';
-$lang_sidebar_php['mozilla_explain'] = 'If you use Mozilla 0.9.4 or later, you can %sadd our sidebar to your set%s. You can uninstall this sidebar using the "Customize Sidebar" dialog in Mozilla.';
-$lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 and above on Mac OS';
-$lang_sidebar_php['ie_mac_explain'] = 'If you use Internet Explorer 5 or above on MacOS, %sopen our sidebar page%s in a separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add". If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites".';
-$lang_sidebar_php['ie_win'] = 'Internet Explorer 5 and above on Windows';
-$lang_sidebar_php['ie_win_explain'] = 'If you use Internet Explorer 5 or above on Windows, you can add the Side Bar to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed in place of your usual search bar by right-clicking %shere%s and selecting "Add to favorites" from the context menu. This link does not install our bar as your default search bar, so no modification is made to your system.';
-$lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 on Windows XP/Vista';
-$lang_sidebar_php['ie7_win_explain'] = 'If you use Internet Explorer 7 on Windows, you can add a navigation pop-up to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed as a pop-up window by right-clicking %shere%s and selecting "Add to favorites" from the context menu. In previous versions of IE, it was possible to add an actual side bar, but in IE7 you cannot accomplish this without applying complicated registry hacks. It is recommended to use another browser if you want to use an actual sidebar.';
-$lang_sidebar_php['opera'] = 'Opera 6 and above';
-$lang_sidebar_php['opera_explain'] = 'If you are using Opera, you can %sclick on this link to add our sidebar to your set%s. Tick "Show in panel" then. You can uninstall the sidebar by right clicking on it\'s tab and choosing "Delete" from the context menu.';
-$lang_sidebar_php['additional_options'] = 'Additional options';
-$lang_sidebar_php['additional_options_explain'] = 'If you have another browser than the one mentioned above, then click %shere%s to display all possible sidebar options.';
-$lang_sidebar_php['cannot_add_sidebar'] = 'Sidebar cannot be added! Your browser does not support this method!'; // js-alert
-$lang_sidebar_php['search'] = 'Search';
-$lang_sidebar_php['reload'] = 'Reload';
-}
-
 
 // ------------------------------------------------------------------------- //
 // File search.php

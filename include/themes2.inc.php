@@ -26,13 +26,13 @@
 // All lines that should NOT be IN themes/sample/theme.php             //{THEMES}//
 // should end in "//{THEMES}" so that they can be easily stripped      //{THEMES}//
 // The individual sections are marked accordingly with                       //
-      /***********************************
-      ** Section <<<SECTIONNAME>>> - START
-      ***********************************/
-      // actual code here
-      /***********************************
-      ** Section <<<SECTIONNAME>>> - END
-      ***********************************/
+	/***********************************
+	** Section <<<SECTIONNAME>>> - START
+	***********************************/
+	// actual code here
+	/***********************************
+	** Section <<<SECTIONNAME>>> - END
+	***********************************/
 // ----------------------------------------------------------------------------- //
 
 defined('IN_COPPERMINE') or die('Not in Coppermine...');         //{THEMES}//
@@ -47,27 +47,27 @@ if (!function_exists('assemble_template_buttons')) {  //{THEMES}
 // this function is used in this file it needs to be declared before being called.
 function assemble_template_buttons($template_buttons,$buttons)
 {
-    $counter=0;
-    $output='';
+	$counter=0;
+	$output='';
 
-    foreach ($buttons as $button)  {
-        if (isset($button[4])) {
-            $spacer=$button[4];
-        } else {
-            $spacer='';
-        }
+	foreach ($buttons as $button)  {
+		if (isset($button[4])) {
+			$spacer=$button[4];
+		} else {
+			$spacer='';
+		}
 
-        $params = array(
-            '{SPACER}'     => $spacer,
-            '{BLOCK_ID}'   => $button[3],
-            '{HREF_TGT}'   => $button[2],
-            '{HREF_TITLE}' => $button[1],
-            '{HREF_LNK}'   => $button[0],
-            '{HREF_ATTRIBUTES}'   => $button[5]
-            );
-        $output.=template_eval($template_buttons, $params);
-    }
-    return $output;
+		$params = array(
+			'{SPACER}'	   => $spacer,
+			'{BLOCK_ID}'   => $button[3],
+			'{HREF_TGT}'   => $button[2],
+			'{HREF_TITLE}' => $button[1],
+			'{HREF_LNK}'   => $button[0],
+			'{HREF_ATTRIBUTES}'	  => $button[5]
+			);
+		$output.=template_eval($template_buttons, $params);
+	}
+	return $output;
 }
 /******************************************************************************
 ** Section <<<assemble_template_buttons>>> - END
@@ -83,7 +83,7 @@ if (!function_exists('addbutton')) {  //{THEMES}
 // this function is used in this file it needs to be declared before being called.
 function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib='')
 {
-    $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib);
+	$menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib);
 }
 /******************************************************************************
 ** Section <<<addbutton>>> - END
@@ -97,7 +97,7 @@ if (!isset($template_sys_menu)) { //{THEMES}
 ******************************************************************************/
 // HTML template for sys_menu
 $template_sys_menu = <<<EOT
-          {BUTTONS}
+	{BUTTONS}
 EOT;
 /******************************************************************************
 ** Section <<<$template_sys_menu>>> - END
@@ -113,44 +113,41 @@ $template_sub_menu = $template_sys_menu;
 }  //{THEMES}
 
 if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
+	// HTML template for template sys_menu spacer
+	if (!isset($template_sys_menu_spacer))  //{THEMES}
+	$template_sys_menu_spacer ="::";
 
-  // HTML template for template sys_menu spacer
-  if (!isset($template_sys_menu_spacer))  //{THEMES}
-  $template_sys_menu_spacer ="::";
-
-  // HTML template for template sys_menu buttons
-  if (!isset($template_sys_menu_button))  //{THEMES}
-  $template_sys_menu_button = <<<EOT
-  <!-- BEGIN {BLOCK_ID} -->
-        <a href="{HREF_TGT}" title="{HREF_TITLE}" {HREF_ATTRIBUTES}>{HREF_LNK}</a> {SPACER}
-  <!-- END {BLOCK_ID} -->
+	// HTML template for template sys_menu buttons
+	if (!isset($template_sys_menu_button))  //{THEMES}
+		$template_sys_menu_button = <<<EOT
+	<!-- BEGIN {BLOCK_ID} -->
+		<a href="{HREF_TGT}" title="{HREF_TITLE}" {HREF_ATTRIBUTES}>{HREF_LNK}</a> {SPACER}
+	<!-- END {BLOCK_ID} -->
 EOT;
 
-  // HTML template for template sys_menu buttons
-  if (!isset($sys_menu_buttons)) { //{THEMES}
-    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
-    addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
-    if (array_key_exists('allowed_albums', $USER_DATA) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
-      addbutton($sys_menu_buttons,'{UPL_APP_LNK}','{UPL_APP_TITLE}','{UPL_APP_TGT}','upload_approval',$template_sys_menu_spacer);
-    }
-    addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{SIDEBAR_LNK}','{SIDEBAR_TITLE}','{SIDEBAR_TGT}','sidebar',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
-    addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
-    addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
-    // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
-  } //{THEMES}
+	// HTML template for template sys_menu buttons
+	if (!isset($sys_menu_buttons)) { //{THEMES}
+		// {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
+		addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
+		if (array_key_exists('allowed_albums', $USER_DATA) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+		  addbutton($sys_menu_buttons,'{UPL_APP_LNK}','{UPL_APP_TITLE}','{UPL_APP_TGT}','upload_approval',$template_sys_menu_spacer);
+		}
+		addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
+		addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
+		addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
+		// Login and Logout don't have a spacer as only one is shown, and either would be the last option.
+	} //{THEMES}
 
-
-  $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);
-  $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
-  $template_sys_menu = template_eval($template_sys_menu,$params);
+	$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);
+	$params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
+	$template_sys_menu = template_eval($template_sys_menu,$params);
 }
 /******************************************************************************
 ** Section <<<$template_sub_menu>>> - END
@@ -161,38 +158,38 @@ EOT;
 ******************************************************************************/
 if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
-    // HTML template for template sub_menu spacer
-    if (!isset($template_sub_menu_spacer))  //{THEMES}
-    $template_sub_menu_spacer = $template_sys_menu_spacer;
+	// HTML template for template sub_menu spacer
+	if (!isset($template_sub_menu_spacer))  //{THEMES}
+	$template_sub_menu_spacer = $template_sys_menu_spacer;
 
-    // HTML template for template sub_menu buttons
-    if (!isset($template_sub_menu_button))  //{THEMES}
-    $template_sub_menu_button = $template_sys_menu_button;
+	// HTML template for template sub_menu buttons
+	if (!isset($template_sub_menu_button))  //{THEMES}
+	$template_sub_menu_button = $template_sys_menu_button;
 
-    // HTML template for template sub_menu buttons
-    if (!isset($sub_menu_buttons)) { //{THEMES}
-    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
-    addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
-    addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer,'rel="nofollow"');
-    addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer,'rel="nofollow"');
-    addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer,'rel="nofollow"');
-    addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer,'rel="nofollow"');
-    addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer,'rel="nofollow"');
-    if ($CONFIG['browse_by_date'] != 0) {
-        addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'browse_by_date', $template_sub_menu_spacer, 'rel="nofollow" class="greybox"');
-    }
-    addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
-    } //{THEMES}
+	// HTML template for template sub_menu buttons
+	if (!isset($sub_menu_buttons)) { //{THEMES}
+		// {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
+		addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
+		addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
+		addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer,'rel="nofollow"');
+		addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer,'rel="nofollow"');
+		addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer,'rel="nofollow"');
+		addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer,'rel="nofollow"');
+		addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer,'rel="nofollow"');
+		if ($CONFIG['browse_by_date'] != 0) {
+			addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'browse_by_date', $template_sub_menu_spacer, 'rel="nofollow" class="greybox"');
+		}
+		addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
+	} //{THEMES}
 
-    $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);
-    $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
-    $template_sub_menu = template_eval($template_sub_menu,$params);
+	$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);
+	$params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
+	$template_sub_menu = template_eval($template_sub_menu,$params);
 }
 /******************************************************************************
 ** Section <<<THEME_HAS_NO_SUB_MENU_BUTTONS>>> - END
 ******************************************************************************/
-	
+
 if (!isset($template_gallery_admin_menu)) { //{THEMES}
 /******************************************************************************
 ** Section <<<$template_gallery_admin_menu>>> - START
@@ -382,34 +379,34 @@ if (!isset($template_cat_list)) { //{THEMES}
 // HTML template for the category list
 $template_cat_list = <<<EOT
 <!-- BEGIN header -->
-        <tr>
-                <td class="tableh1" width="80%" align="left">{CATEGORY}</td>
-                <td class="tableh1" width="10%" align="center">{ALBUMS}</td>
-                <td class="tableh1" width="10%" align="center">{PICTURES}</td>
-        </tr>
+	<tr>
+		<td class="tableh1" width="80%" align="left">{CATEGORY}</td>
+		<td class="tableh1" width="10%" align="center">{ALBUMS}</td>
+		<td class="tableh1" width="10%" align="center">{PICTURES}</td>
+	</tr>
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
-        <tr>
-                <td class="catrow_noalb" colspan="3"><table border="0"><tr><td align="left">{CAT_THUMB}</td><td align="left"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td></tr></table></td>
-        </tr>
+	<tr>
+		<td class="catrow_noalb" colspan="3"><table border="0"><tr><td align="left">{CAT_THUMB}</td><td align="left"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td></tr></table></td>
+	</tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
-        <tr>
-                <td class="catrow" align="left"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td></tr></table></td>
-                <td class="catrow" align="center">{ALB_COUNT}</td>
-                <td class="catrow" align="center">{PIC_COUNT}</td>
-        </tr>
-        <tr>
-            <td class="tableb tableb_alternate" colspan="3">{CAT_ALBUMS}</td>
-        </tr>
+	<tr>
+		<td class="catrow" align="left"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td></tr></table></td>
+		<td class="catrow" align="center">{ALB_COUNT}</td>
+		<td class="catrow" align="center">{PIC_COUNT}</td>
+	</tr>
+	<tr>
+		<td class="tableb tableb_alternate" colspan="3">{CAT_ALBUMS}</td>
+	</tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
-        <tr>
-                <td colspan="3" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
-        </tr>
+	<tr>
+		<td colspan="3" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
+	</tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
+	<img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -425,25 +422,20 @@ if (!isset($template_breadcrumb)) { //{THEMES}
 // HTML template for the breadcrumb
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
-        <tr>
-            <td colspan="3" align="left" class="tableh1">
-                <span class="statlink">{BREADCRUMB}</span>
-            </td>
-        </tr>
+<tr><td>
+	<div align="left" class="tableh1">
+		<span class="statlink">{BREADCRUMB}</span>
+	</div>
+</td></tr>
 <!-- END breadcrumb -->
 <!-- BEGIN breadcrumb_user_gal -->
-        <tr>
-            <td colspan="3" class="tableh1">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                        <td align="left"><span class="statlink">{BREADCRUMB}</span></td>
-                        <td align="right"><span class="statlink">{STATISTICS}</span></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+<tr><td>
+	<div class="tableh1">
+		<div align="left"><span class="statlink">{BREADCRUMB}</span></div>
+		<div align="right"><span class="statlink">{STATISTICS}</span></div>
+	</div>
 <!-- END breadcrumb_user_gal -->
-
+</td></tr>
 EOT;
 /******************************************************************************
 ** Section <<<$template_breadcrumb>>> - END
@@ -458,84 +450,74 @@ if (!isset($template_album_list)) { //{THEMES}
 $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
-        <tr>
-                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></td>
-        </tr>
+	<tr><td>
+	<div>
+		<div colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink">{STATISTICS}</span></div>
+	</div>
 <!-- END stat_row -->
 <!-- BEGIN header -->
-        <tr class="tableb tableb_alternate">
+	<div class="tableb tableb_alternate">
 <!-- END header -->
 <!-- BEGIN album_cell -->
-        <td width="{COL_WIDTH}%" valign="top">
-        <table width="100%" cellspacing="0" cellpadding="0">
-        <tr>
-                <td colspan="3" height="1" align="left" valign="top" class="tableh2">
-                        <span class="alblink"><a href="{ALB_LINK_TGT}">{ALBUM_TITLE}</a></span>
-                </td>
-        </tr>
-        <tr>
-                <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
-                </td>
-        </tr>
-        <tr>
-                <td align="center" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
-                        <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
-                </td>
-                <td>
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" />
-                </td>
-                <td width="100%" valign="top" align="left" class="tableb tableb_alternate">
-                        {ADMIN_MENU}
-                        <p>{ALB_DESC}</p>
-                        <p class="album_stat">{ALB_INFOS}<br />{ALB_HITS}</p>
-                </td>
-        </tr>
-        </table>
-        </td>
+	<div width="{COL_WIDTH}%" valign="top">
+	<div width="100%">
+	<div colspan="3" height="1" align="left" valign="top" class="tableh2">
+		<span class="alblink"><a href="{ALB_LINK_TGT}">{ALBUM_TITLE}</a></span>
+	</div>
+	<div>
+		<img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
+	</div>
+	<div align="center" valign="middle" class="thumbnails">
+		<div>
+			<img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
+			<a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
+		</div>
+		<div>
+			<img src="images/spacer.gif" width="1" height="1" border="0" alt="" />
+		</div>
+		<div width="100%" valign="top" align="left" class="tableb tableb_alternate">
+			{ADMIN_MENU}
+			<p>{ALB_DESC}</p>
+			<p class="album_stat">{ALB_INFOS}<br />{ALB_HITS}</p>
+		</div>
+	</div>
+	</div>
+	</div>
 <!-- END album_cell -->
 <!-- BEGIN empty_cell -->
-        <td width="{COL_WIDTH}%" valign="top">
-        <table width="100%" cellspacing="0" cellpadding="0">
-        <tr>
-                <td height="1" valign="top" class="tableh2">
-                        &nbsp;
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
-                </td>
-        </tr>
-        <tr>
-                <td width="100%" valign="top" class="tableb tableb_alternate">
-                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="1" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
-                </td>
-        </tr>
-        </table>
-        </td>
+	<div width="{COL_WIDTH}%" valign="top">
+		<div width="100%">
+			<div height="1" valign="top" class="tableh2">
+				&nbsp;
+			</div>
+			<div>
+				<img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
+			</div>
+			<div width="100%" valign="top" class="tableb tableb_alternate">
+				<div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="1" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+			</div>
+		</div>
+	</div>
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
-        </tr>
-        <tr class="tableb tableb_alternate">
+	</div>
+	<div class="tableb tableb_alternate">
 <!-- END row_separator -->
 <!-- BEGIN footer -->
-        </tr>
+	</div>
+	</td></tr>
 <!-- END footer -->
 <!-- BEGIN tabs -->
-        <tr>
-                <td colspan="{COLUMNS}" style="padding: 0px;">
-                        <table width="100%" cellspacing="0" cellpadding="0">
-                                <tr>
-                                       {TABS}
-                                </tr>
-                        </table>
-                </td>
-        </tr>
+	<tr><td>
+	<div>
+		<div>
+			{TABS}
+		</div>
+	</div>
+	</td></tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
+	<img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -685,20 +667,20 @@ if (!isset($template_album_admin_menu)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the ALBUM admin menu displayed in the album list
 $template_album_admin_menu = <<<EOT
-        <div class="buttonlist align_right">
-                <ul>
-                        <li>
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');"><span>{DELETE}</span></a>
-                        </li>
-                        <li>
-                                <a href="modifyalb.php?album={ALBUM_ID}"><span>{MODIFY}</span></a>
-                        </li>
-                        <li>
-                                <a href="editpics.php?album={ALBUM_ID}"><span class="last">{EDIT_PICS}</span></a>
-                        </li>
-                </ul>
-        </div>
-        <div class="clearer"></div>
+	<div class="buttonlist align_right">
+		<ul>
+			<li>
+				<a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');"><span>{DELETE}</span></a>
+			</li>
+			<li>
+				<a href="modifyalb.php?album={ALBUM_ID}"><span>{MODIFY}</span></a>
+			</li>
+			<li>
+				<a href="editpics.php?album={ALBUM_ID}"><span class="last">{EDIT_PICS}</span></a>
+			</li>
+		</ul>
+	</div>
+	<div class="clearer"></div>
 
 EOT;
 /******************************************************************************
@@ -712,27 +694,26 @@ if (!isset($template_thumb_view_title_row)) { //{THEMES}
 ******************************************************************************/
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
-
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-                <td style="vertical-align:top" class="statlink">
-                    <h2>{ALBUM_NAME}</h2>
-                </td>
-                <td style="text-align:right;" class="sortorder_cell" id="sortorder_cell">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td style="vertical-align:top" class="statlink">
+				<h2>{ALBUM_NAME}</h2>
+			</td>
+			<td style="text-align:right;" class="sortorder_cell" id="sortorder_cell">
 <!-- BEGIN admin_buttons -->
-                    <div class="buttonlist">
-                        <ul>
-                            <li><a href="modifyalb.php?album={ALBUM_ID}" title="{MODIFY_LNK}"><span>{MODIFY_ICO}</span></a></li>
-                            <li><a href="index.php?cat={CAT_ID}" title="{PARENT_CAT_LNK}"><span>{PARENT_CAT_ICO}</span></a></li>
-                            <li><a href="editpics.php?album={ALBUM_ID}" title="{EDIT_PICS_LNK}"><span>{EDIT_PICS_ICO}</span></a></li>
-                            <li><a href="albmgr.php?cat={CAT_ID}" title="{ALBUM_MGR_LNK}"><span class="last">{ALBUM_MGR_ICO}</span></a></li>
-                        </ul>
-                    </div>
+				<div class="buttonlist">
+					<ul>
+						<li><a href="modifyalb.php?album={ALBUM_ID}" title="{MODIFY_LNK}"><span>{MODIFY_ICO}</span></a></li>
+						<li><a href="index.php?cat={CAT_ID}" title="{PARENT_CAT_LNK}"><span>{PARENT_CAT_ICO}</span></a></li>
+						<li><a href="editpics.php?album={ALBUM_ID}" title="{EDIT_PICS_LNK}"><span>{EDIT_PICS_ICO}</span></a></li>
+						<li><a href="albmgr.php?cat={CAT_ID}" title="{ALBUM_MGR_LNK}"><span class="last">{ALBUM_MGR_ICO}</span></a></li>
+					</ul>
+				</div>
 <!-- END admin_buttons -->
-                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
-                </td>
-            </tr>
-        </table>
+				<!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
+			</td>
+		</tr>
+	</table>
 
 EOT;
 /******************************************************************************
@@ -774,6 +755,7 @@ if (!isset($template_thumbnail_view)) { //{THEMES}
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
 <!-- BEGIN header -->
+	<tr><td>
 	<div class="alb-img-cels{$V2suffix}">
 <!-- END header -->
 <!-- BEGIN thumb_cell -->
@@ -791,11 +773,14 @@ $template_thumbnail_view = <<<EOT
 <!-- END empty_cell -->
 <!-- BEGIN footer -->
 	</div>
+	</td></tr>
 <!-- END footer -->
 <!-- BEGIN tabs -->
+	<tr><td>
 	<div class="r-thm-tabs row">
 		{TABS}
 	</div>
+	</td></tr>
 <!-- END tabs -->
 EOT;
 /******************************************************************************
@@ -809,13 +794,13 @@ if (!isset($template_no_img_to_display)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the thumbnail view when there is no picture to show
 $template_no_img_to_display = <<<EOT
-        <tr>
-                <td class="tableb tableb_alternate" height="200" align="center">
-                        <span class="cpg_user_message">{TEXT}</span>
-                </td>
-        </tr>
+	<tr>
+		<td class="tableb tableb_alternate" height="200" align="center">
+			<span class="cpg_user_message">{TEXT}</span>
+		</td>
+	</tr>
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
+	<img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -830,18 +815,17 @@ if (!isset($template_user_list_info_box)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the USER info box in the user list view
 $template_user_list_info_box = <<<EOT
-
-        <table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
-                <tr>
-                        <th><a href="profile.php?uid={USER_ID}">{USER_NAME}</a></th>
-                </tr>
-                <tr>
-                        <td>{ALBUMS}</td>
-                </tr>
-                <tr>
-                        <td>{PICTURES}</td>
-                </tr>
-        </table>
+	<table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
+		<tr>
+			<th><a href="profile.php?uid={USER_ID}">{USER_NAME}</a></th>
+		</tr>
+		<tr>
+			<td>{ALBUMS}</td>
+		</tr>
+		<tr>
+			<td>{PICTURES}</td>
+		</tr>
+	</table>
 
 EOT;
 /******************************************************************************
@@ -855,38 +839,36 @@ if (!isset($template_img_navbar)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the image navigation bar
 $template_img_navbar = <<<EOT
-
-        <tr>
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a></td>
+	<div>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a></span>
 <!-- BEGIN pic_info_button -->
-                <!-- button will be added by displayimage.js -->
-                <td id="pic_info_button" align="center" valign="middle" class="navmenu" width="48"></td>
+		<!-- button will be added by displayimage.js -->
+		<span id="pic_info_button" align="center" valign="middle" class="navmenu" width="48"></span>
 <!-- END pic_info_button -->
 <!-- BEGIN slideshow_button -->
-                <!-- button will be added by displayimage.js -->
-                <td id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></td>
+		<!-- button will be added by displayimage.js -->
+		<span id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></span>
 <!-- END slideshow_button -->
-                <td align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</td>
+		<span align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</span>
 <!-- BEGIN report_file_button -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a></td>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" border="0" align="middle" alt="{REPORT_TITLE}" /></a></span>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></td>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></span>
 <!-- END ecard_button -->
 <!-- BEGIN nav_start -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{START_TGT}" class="navmenu_pic" title="{START_TITLE}"><img src="{LOCATION}images/navbar/{START_IMAGE}" border="0" align="middle" alt="{START_TITLE}" /></a></td>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{START_TGT}" class="navmenu_pic" title="{START_TITLE}"><img src="{LOCATION}images/navbar/{START_IMAGE}" border="0" align="middle" alt="{START_TITLE}" /></a></span>
 <!-- END nav_start -->
 <!-- BEGIN nav_prev -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" border="0" align="middle" alt="{PREV_TITLE}" /></a></span>
 <!-- END nav_prev -->
 <!-- BEGIN nav_next -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" border="0" align="middle" alt="{NEXT_TITLE}" /></a></span>
 <!-- END nav_next -->
 <!-- BEGIN nav_end -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{END_TGT}" class="navmenu_pic" title="{END_TITLE}"><img src="{LOCATION}images/navbar/{END_IMAGE}" border="0" align="middle" alt="{END_TITLE}" /></a></td>
+		<span align="center" valign="middle" class="navmenu" width="48"><a href="{END_TGT}" class="navmenu_pic" title="{END_TITLE}"><img src="{LOCATION}images/navbar/{END_IMAGE}" border="0" align="middle" alt="{END_TITLE}" /></a></span>
 <!-- END nav_end -->
-
-        </tr>
+	</div>
 
 EOT;
 /******************************************************************************
@@ -900,49 +882,42 @@ if (!isset($template_display_media)) { //{THEMES}
 ******************************************************************************/
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
-        <tr>
-                <td align="center" class="display_media" nowrap="nowrap">
-                        <table width="100%" cellspacing="2" cellpadding="0">
-                                <tr>
-                                        <td align="center" style="{SLIDESHOW_STYLE}">
-                                                {IMAGE}
-                                        </td>
-                                </tr>
-                        </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                        <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate">
-                                        <tr>
-                                                <td align="center">
-                                                        {ADMIN_MENU}
-                                                </td>
-                                        </tr>
-                        </table>
-
-
+	<tr><td>
+	<div>
+		<div align="center" class="display_media" nowrap="nowrap">
+			<div width="100%">
+				<div align="center" style="{SLIDESHOW_STYLE}">
+					 {IMAGE}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div width="100%" class="tableb tableb_alternate">
+			<div align="center">
+				{ADMIN_MENU}
+			</div>
+		</div>
 <!-- BEGIN img_desc -->
-                        <table cellpadding="0" cellspacing="0" class="tableb tableb_alternate" width="100%">
+		<div class="tableb tableb_alternate" width="100%">
 <!-- BEGIN title -->
-                                <tr>
-                                        <td class="tableb tableb_alternate"><h1 class="pic_title">
-                                                {TITLE}
-                                        </h1></td>
-                                </tr>
+			<div class="tableb tableb_alternate">
+				<h1 class="pic_title">
+					{TITLE}
+				</h1>
+			</div>
 <!-- END title -->
 <!-- BEGIN caption -->
-                                <tr>
-                                        <td class="tableb tableb_alternate"><h2 class="pic_caption">
-                                                {CAPTION}
-                                        </h2></td>
-                                </tr>
+			<div class="tableb tableb_alternate">
+				<h2 class="pic_caption">
+					{CAPTION}
+				</h2>
+			</div>
 <!-- END caption -->
-                        </table>
+		</div>
 <!-- END img_desc -->
-                </td>
-        </tr>
-
+	</div>
+	</td></tr>
 EOT;
 /******************************************************************************
 ** Section <<<$template_display_media>>> - END
@@ -955,21 +930,21 @@ if (!isset($template_image_rating)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-    <tr>
-        <td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
-    </tr>
-    <tr id="rating_stars">
-        <td class="tableb" id="star_rating"></td>
-    </tr>
-    <tr class="noscript">
-      <td class="tableb" colspan="6" align="center">
-        <noscript>
-           {JS_WARNING}
-        </noscript>
-      </td>
-    </tr>
-</table>
+	<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+		<tr>
+			<td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
+		</tr>
+		<tr id="rating_stars">
+			<td class="tableb" id="star_rating"></td>
+		</tr>
+		<tr class="noscript">
+			<td class="tableb" colspan="6" align="center">
+				<noscript>
+					{JS_WARNING}
+				</noscript>
+			</td>
+		</tr>
+	</table>
 EOT;
 /******************************************************************************
 ** Section <<<$template_image_rating>>> - END
@@ -982,20 +957,20 @@ if (!isset($template_image_rating_oldstyle)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the image rating box (old-style)
 $template_image_rating_oldstyle = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-    <tr>
-        <td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
-    </tr>
-    <tr id="rating_stars">
-        <td class="tableb" id="star_rating">
-            <table width="100%">
-                <tr>
-                    {RATING_IMAGES}
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+	<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+		<tr>
+			<td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
+		</tr>
+		<tr id="rating_stars">
+			<td class="tableb" id="star_rating">
+				<table width="100%">
+					<tr>
+						{RATING_IMAGES}
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
 EOT;
 /******************************************************************************
 ** Section <<<$template_image_rating_oldstyle>>> - END
@@ -1260,7 +1235,7 @@ if (!isset($template_ecard)) { //{THEMES}
 ******************************************************************************/
 // HTML template for e-cards
 $template_ecard = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html dir="{LANG_DIR}">
 <head>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
@@ -1348,7 +1323,7 @@ if (!isset($template_report)) { //{THEMES}
 ******************************************************************************/
 // HTML template for report
 $template_report = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html dir="{LANG_DIR}">
 <head>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
@@ -1426,7 +1401,7 @@ if (!isset($template_report_comment)) { //{THEMES}
 ******************************************************************************/
 // HTML template for displaying a reported comment
 $template_report_comment = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html dir="{LANG_DIR}">
 <head>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
@@ -1476,7 +1451,7 @@ if (!isset($template_report_comment_email)) { //{THEMES}
 ******************************************************************************/
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
 $template_report_comment_email = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html dir="{LANG_DIR}">
 <head>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
@@ -1527,19 +1502,19 @@ if (!isset($template_tab_display)) { //{THEMES}
 ** Section <<<$template_tab_display>>> - START
 ******************************************************************************/
 // Template used for tabbed display
-$template_tab_display = array(
-    'left_text'         => '<td width="100%%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">{LEFT_TEXT}</td>' . $LINEBREAK,
-    'tab_header'        => '',
-    'tab_trailer'       => '',
-    'active_tab'        => '<td align="center" valign="middle" class="tableb tableb_alternate">%d</td>',
-    'inactive_tab'      => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . $LINEBREAK,
-    'nav_tab'           => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></td>' . $LINEBREAK,
-    'nav_tab_nolink'    => '<td align="center" valign="middle" class="navmenu">%s</td>' . $LINEBREAK,
-    'allpages_dropdown' => '<td align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</td>' . $LINEBREAK,
-    'page_gap'          => '<td align="center" valign="middle" class="navmenu">-</td>' . $LINEBREAK,
-    'tab_spacer'        => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . $LINEBREAK,
-    'page_link'         => '{LINK}',
-);
+$template_tab_display = [
+	'left_text'			=> '<div width="100%%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">{LEFT_TEXT}</div>' . $LINEBREAK,
+	'tab_header'		=> '',
+	'tab_trailer'		=> '',
+	'active_tab'		=> '<div align="center" valign="middle" class="tableb tableb_alternate">%d</div>',
+	'inactive_tab'		=> '<div align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></div>' . $LINEBREAK,
+	'nav_tab'			=> '<div align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></div>' . $LINEBREAK,
+	'nav_tab_nolink'	=> '<div align="center" valign="middle" class="navmenu">%s</div>' . $LINEBREAK,
+	'allpages_dropdown'	=> '<div align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</div>' . $LINEBREAK,
+	'page_gap'			=> '<div align="center" valign="middle" class="navmenu">-</div>' . $LINEBREAK,
+	'tab_spacer'		=> '<div><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></div>' . $LINEBREAK,
+	'page_link'			=> '{LINK}'
+];
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - END
 ******************************************************************************/
@@ -1586,14 +1561,14 @@ function pageheader($section, $meta = '')
         '{TITLE}' => theme_page_title($section),
         '{CHARSET}' => $charset,
         '{META}' => $meta,
-        '{USER_CSS}' => theme_css_head(),
+        '{CSS}' => theme_css_head(),
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
         '{SYS_MENU}' => theme_main_menu('sys_menu'),
         '{SUB_MENU}' => theme_main_menu('sub_menu'),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
-        '{JAVASCRIPT}' => theme_javascript_head(),
+        '{JAVASCRIPT}' => (strpos($template_header, '{CSS}') ? '' : theme_css_head()) . theme_javascript_head(),
         '{MESSAGE_BLOCK}' => theme_display_message_block(),
     );
 
@@ -1777,7 +1752,7 @@ function theme_css_head()
             $return .= css_include($css_file, true) . $LINEBREAK;
         }
     }
-
+if(CPG_DVL) set_css_rules('.cpg_message_warning{display:none}');
     // Check if we have any CSS being set using set_css_rules function
     if (!empty($CSS['rules'])) {
         // Join the rules
@@ -2087,6 +2062,30 @@ EOT;
         return $text;
     }
 }
+function startdtable($width = '-1', $title = '', $title_colspan = '1', $zebra_class = '', $return = false)
+{
+    global $CONFIG;
+
+    if ($width == '-1') $width = $CONFIG['picture_table_width'];
+    if ($width == '100%') $width = $CONFIG['main_table_width'];
+    $text = <<<EOT
+
+<!-- Start standard div -->
+<div width="$width" class="maintable $zebra_class">
+
+EOT;
+    if ($title) {
+        $text .= <<<EOT
+                <div class="tableh1">$title</div>
+
+EOT;
+    }
+    if ($return) {
+        return $text;
+    } else {
+        echo $text;
+    }
+}
 /******************************************************************************
 ** Section <<<starttable>>> - END
 ******************************************************************************/
@@ -2107,6 +2106,19 @@ EOT;
         echo $text;
     } else {
         return $text;
+    }
+}
+function enddtable($return = false)
+{
+    $text = <<<EOT
+</div>
+<!-- End standard div -->
+
+EOT;
+    if ($return) {
+        return $text;
+    } else {
+        echo $text;
     }
 }
 /******************************************************************************
@@ -2169,18 +2181,12 @@ function theme_main_menu($which)
         if ($CONFIG['contact_form_registered_enable'] == 0) {
           template_extract_block($template_sys_menu, 'contact');
         }
-        if ($CONFIG['display_sidebar_user'] != 2) {
-          template_extract_block($template_sys_menu, 'sidebar');
-        }
 
         list($timestamp, $form_token) = getFormToken();
 
     } else { // visitor is not logged in
         if ($CONFIG['contact_form_guest_enable'] == 0) {
           template_extract_block($template_sys_menu, 'contact');
-        }
-        if ($CONFIG['display_sidebar_guest'] != 2) {
-          template_extract_block($template_sys_menu, 'sidebar');
         }
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
@@ -2248,10 +2254,6 @@ function theme_main_menu($which)
         '{USR_MODE_ICO}' => cpg_fetch_icon('admin_mode_off', 1),
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-        '{SIDEBAR_TGT}' => "sidebar.php?action=install",
-        '{SIDEBAR_TITLE}' => $lang_main_menu['sidebar_title'],
-        '{SIDEBAR_LNK}' => $lang_main_menu['sidebar_lnk'],
-        '{SIDEBAR_ICO}' => cpg_fetch_icon('sidebar', 1),
         '{UPL_PIC_TGT}' => "upload.php$album_12",
         '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
         '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
@@ -2668,20 +2670,18 @@ if (!function_exists('theme_display_breadcrumb')) {  //{THEMES}
 ******************************************************************************/
 function theme_display_breadcrumb($breadcrumb, &$cat_data)
 {
-    /**
-     * ** added breadcrumb as a seperate element
-     */
-    global $template_breadcrumb, $lang_breadcrumb;
+	/**
+	 * ** added breadcrumb as a seperate element
+	 */
+	global $template_breadcrumb, $lang_breadcrumb;
 
-    starttable('100%');
-    if ($breadcrumb) {
-        $template = template_extract_block($template_breadcrumb, 'breadcrumb');
-        $params = array(
-                '{BREADCRUMB}' => $breadcrumb,
-        );
-        echo template_eval($template, $params);
-    }
-        endtable();
+	starttable('100%');
+	if ($breadcrumb) {
+		$template = template_extract_block($template_breadcrumb, 'breadcrumb');
+		$params = ['{BREADCRUMB}' => $breadcrumb];
+		echo template_eval($template, $params);
+	}
+	endtable();
 }
 /******************************************************************************
 ** Section <<<theme_display_breadcrumb>>> - END
@@ -2765,9 +2765,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
     echo $footer;
     // Tab display
-    $params = array('{COLUMNS}' => $columns,
-        '{TABS}' => $tabs,
-        );
+    $params = ['{COLUMNS}' => $columns, '{TABS}' => $tabs];
     echo template_eval($tabs_row, $params);
 
     endtable();
@@ -3053,14 +3051,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 	echo $footer;
 
 	if ($display_tabs) {
-		$params = array(
-			'{THUMB_COLS}' => $thumbcols,
-			'{TABS}'       => $tabs_html,
-		);
+		$params = ['{THUMB_COLS}' => $thumbcols, '{TABS}' => $tabs_html];
 		echo template_eval($tabs, $params);
 	}
 
-//	endtable();
+	endtable();
 	CPGPluginAPI::action('theme_thumbnails_wrapper_end', null);
 	echo $spacer;
 }
@@ -3271,8 +3266,8 @@ function theme_html_picinfo(&$info)
     }
 
     $html = '';
-    $html .= '        <tr><td colspan="2" class="tableh2">'.$lang_picinfo['title'].'</td></tr>' . $LINEBREAK;
-    $template = '        <tr><td class="tableb tableb_alternate" valign="top" >%s:</td><td class="tableb tableb_alternate">%s</td></tr>' . $LINEBREAK;
+    $html .= '        <div class="tableh2">'.$lang_picinfo['title'].'</div>' . $LINEBREAK;
+    $template = '        <div class="tableb tableb_alternate" valign="top" >%s:</div><div class="tableb tableb_alternate">%s</div>' . $LINEBREAK;
     foreach ($info as $key => $value) {
         $html .= sprintf($template, $key, $value);
     }
@@ -4216,7 +4211,7 @@ function theme_display_fullsize_pic()
     $charset = ($CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
     $jquery_path = CPG_JQUERY_VERSION;
     $fullsize_html = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=$charset" />
@@ -4414,55 +4409,6 @@ function theme_page_title($section)
 }
 /******************************************************************************
 ** Section <<<theme_page_title>>> - END
-******************************************************************************/
-} //{THEMES}
-
-if (!isset($template_sidebar)) { //{THEMES}
-/******************************************************************************
-** Section <<<$template_sidebar>>> - START
-******************************************************************************/
-// HTML template for sidebar
-$jquery_path = CPG_JQUERY_VERSION;
-$template_sidebar = <<<EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="{LANG_DIR}">
-<head>
-<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
-<title>{TITLE}</title>
-<script src="{$jquery_path}" type="text/javascript"></script>
-<script src="js/jquery.treeview.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function() {
-        $("#tree").treeview({
-            collapsed: true,
-            unique: true,
-            animated: "slow",
-            persist: "location",
-        });
-    })
-</script>
-<link rel="stylesheet" href="css/theme2.css" type="text/css" />
-<link rel="stylesheet" href="css/treeview.css" type="text/css" />
-</head>
-<body>
-{SIDEBAR_CONTENT}
-<form method="GET" action="thumbnails.php" target="_content">
-  <input type="hidden" name="album" value="search" />
-  <input type="hidden" name="title" value="on" />
-  <input type="hidden" name="caption" value="on" />
-  <input type="hidden" name="keywords" value="on" />
-  <input type="hidden" name="filename" value="on" />
-  <div id="SidebarSearchWrapper" style="margin: 1px 1px;float: left;">
-    <input id="sidebarSearchField" type="text" name="search" class="textinput" />
-    <button type="submit" class="button" name="sidebarSearchButton" id="sidebarSearchButton" value="{SEARCH_TITLE}">{SEARCH_ICON}</button>
-    <a href="sidebar.php" target="_self">{REFRESH_ICON}</a>
-  </div>
-</form>
-</body>
-</html>
-EOT;
-/******************************************************************************
-** Section <<<$template_sidebar>>> - END
 ******************************************************************************/
 } //{THEMES}
 

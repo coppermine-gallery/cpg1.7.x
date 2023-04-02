@@ -3453,9 +3453,7 @@
 	</element>
 	<element>
 		<fullpath>images/icons/sidebar.png</fullpath>
-		<status>mandatory</status>
-		<permission>read</permission>
-		<hash>f55ca408a12cec7dd0a20e2bbaeb5b94</hash>
+		<status>remove</status>
 	</element>
 	<element>
 		<fullpath>images/icons/slideshow.png</fullpath>
@@ -7549,7 +7547,7 @@
 	</element>
 	<element>
 		<fullpath>plugins/upload_h5a/codebase.php</fullpath>
-		<version>1.6.09</version>
+		<version>1.7.00</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>fd25138b9738c93c9904f4b90154ff53</hash>
@@ -7959,10 +7957,7 @@
 	</element>
 	<element>
 		<fullpath>sidebar.php</fullpath>
-		<version>1.6.03</version>
-		<status>mandatory</status>
-		<permission>read</permission>
-		<hash>fb6d8b2a53138fc450b23ee96ae6f96d</hash>
+		<status>remove</status>
 	</element>
 	<element>
 		<fullpath>sql/</fullpath>
@@ -9284,10 +9279,7 @@
 	</element>
 	<element>
 		<fullpath>upgrader.php</fullpath>
-		<version>1.6.06</version>
-		<status>optional</status>
-		<permission>read</permission>
-		<hash>86806350503435a97008d7348edfc967</hash>
+		<status>remove</status>
 	</element>
 	<element>
 		<fullpath>upload.php</fullpath>

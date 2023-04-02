@@ -183,8 +183,6 @@ $lang_main_menu['browse_by_date_lnk'] = 'Kuupäeva järgi';
 $lang_main_menu['browse_by_date_title'] = 'Vali lisamise aja järgi';
 $lang_main_menu['contact_title'] = 'Kontakteeru %s-ga';
 $lang_main_menu['contact_lnk'] = 'Kontakt';
-$lang_main_menu['sidebar_title'] = 'Lisa oma brauserile külgriba';
-$lang_main_menu['sidebar_lnk'] = 'Külgriba';
 
 $lang_gallery_admin_menu['upl_app_title'] = 'Kiida heaks uued lisamised';
 $lang_gallery_admin_menu['upl_app_lnk'] = 'Lisatute heakskiit';
@@ -926,8 +924,6 @@ $lang_admin_php['contact_form_subject_content'] = 'E-kirjade teemarea tekst, mid
 $lang_admin_php['contact_form_sender_email'] = 'Kasuta saatja e-posti aadressi &quot;Kellelt&quot; rea peal';
 $lang_admin_php['allow_no_link'] = 'luba, aga ära näita linki';
 $lang_admin_php['allow_show_link'] = 'luba ja reklaami seda lingi näitamise näol';
-$lang_admin_php['display_sidebar_user'] = 'Külgpaan registreeritud kasutajatele';
-$lang_admin_php['display_sidebar_guest'] = 'Külgpaan külalistele';
 $lang_admin_php['do_not_change'] = 'Ära muuda seda, kui sa ei tea, MIDA sa teed!';
 $lang_admin_php['reset_to_default'] = 'Lähtesta vaikeväärtustele';
 $lang_admin_php['no_change_needed'] = 'Muudatusi pole vaja, konfiguratsioon on seatud vaikeväärtustele';
@@ -1966,33 +1962,6 @@ $lang_reviewcom_php['unknown_error'] = 'Tundmatu viga';
 $lang_reviewcom_php['error_message'] = 'Veateade oli';
 $lang_reviewcom_php['ip_address'] = 'IP aadress';
 }
-
-// ------------------------------------------------------------------------- //
-// File sidebar.php
-// ------------------------------------------------------------------------- //
-if (defined('SIDEBAR_PHP')) {
-$lang_sidebar_php['sidebar'] = 'Külgriba';
-$lang_sidebar_php['install'] = 'paigalda';
-$lang_sidebar_php['install_explain'] = 'Paljude teiste tarkade pöördumismeetodite hulgas, mis võimaldavad saidile kiiresti infot saada, pakume külgriba populaarseimatele brauseritele, mida kasutatakse erinevate opsüsteemidega, et tagada lehekülgedele lihtne juurdepääs. Siit leiab toetatud brauserite jaoks vajaliku paigaldamise ja mahavõtmise info.';
-$lang_sidebar_php['os_browser_detect'] = 'Sinu OS ja brauseri määratlemine';
-$lang_sidebar_php['os_browser_detect_explain'] = 'Skript proovib tuvastada sinu opsüsteemi ja brauseri versiooni - palun oota hetk. Kui automaatne tuvastamine ebaõnnestub, siis sa ehk soovid %snähtavaks teha%s kõik võimalikud külgriba paigaldamise valikud.';
-$lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+';
-$lang_sidebar_php['mozilla_explain'] = 'Kui sa kasutad Mozilla 0.9.4 või hilisemat, võid %slisada meie külgriba oma seadistusele%s. Sa võid külgriba maha võtta, kasutades Mozilla "Kohanda külgriba" ("Customize Sidebar") dialoogi.';
-$lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 ja uuem Mac OS\'il';
-$lang_sidebar_php['ie_mac_explain'] = 'Kui sa kasutad Internet Explorer 5 või uuemat Mac OS\'il, %sava oma külgriba lehekülg%s eraldi aknas. Selles aknas ava "Leheküljehoidja" ("Page Holder") kaart akna vasakus servas. Klõpsa "Lisa" ("Add"). Kui sa soovid seda tulevikus kasutada, klõpsa "Lemmikud" ("Favorites") ja vali käsk "Lisa leheküljehoidja lemmikutesse" ("Add to Page Holder Favorites").';
-$lang_sidebar_php['ie_win'] = 'Internet Explorer 5 ja uuem Windows\'is';
-$lang_sidebar_php['ie_win_explain'] = 'Kui sa kasutad Internet Explorer 5 või uuemat Windows\'is, siis võid lisada külgriba oma viidete tööriistaribale või lemmikutesse ja klõpsates sellel näed meie külgriba seal, kus tavaliselt on otsinguriba, paremklõpsates %ssiin%s ja valides kontekstimenüüst "Lisa lemmikute hulka" ("Add to favorites"). See viide ei paigalda meie riba vaikimisi otsinguriba asemele, seega ei tehta sinu süsteemis mingeid muudatusi.';
-$lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 Windows XP/Vista\'s';
-$lang_sidebar_php['ie7_win_explain'] = 'Kui sa kasutad Internet Explorer 7-t Windows\'is, siis sa võid lisada navigeerimise pop-up\'i oma viidete tööriistaribale või lemmikutesse ja klõpsates sellel näed meie külgriba hüpikaknana (pop-up\'ina) paremklõpsates %ssiin%s ja valides kontekstimenüüst "Lisa lemmikute hulka" ("Add to favorites"). IE eelmistes versioonides oli võimalik lisada tegelikku külgriba, aga IE7-s ei saa seda teostada ilma keerulise registri häkkimiseta. Soovitav on kasutada mõnda teist brauserit, kui sa soovid kasutada tegelikku külgriba.';
-$lang_sidebar_php['opera'] = 'Opera 6 ja uuem';
-$lang_sidebar_php['opera_explain'] = 'Kui sa kasutad Opera\'t, siis võid %sklõpsata sellel viitel, et lisada meie külgriba oma seadistusele%s. Märgista seejärel "Näita paanil" ("Show in panel"). Sa võid külgriba maha võtta paremklõpsates selle kaardil ja valides kontekstimenüüst "Kustuta" ("Delete").';
-$lang_sidebar_php['additional_options'] = 'Lisavalikud';
-$lang_sidebar_php['additional_options_explain'] = 'Kui sa kasutad ülalmainitutest erinevat brauserit, siis klõpsa %ssiin%s, et näha kõiki võimalikke külgriba valikuid.';
-$lang_sidebar_php['cannot_add_sidebar'] = 'Külgriba ei saa lisada! Sinu brauser ei toeta seda meetodit!'; // js-alert
-$lang_sidebar_php['search'] = 'Otsi';
-$lang_sidebar_php['reload'] = 'Lae uuesti';
-}
-
 
 // ------------------------------------------------------------------------- //
 // File search.php
