@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * include/admin.inc.php
- * @since  1.7.00
+ * @since  1.7.01
  */
 
 /**********************************************
@@ -393,6 +393,17 @@ $config_data = array(
     ),
   ),
   'thumbnail_view' => array(
+    'thumbs_per' => array(
+      'type'          => 'textfield',
+      'min'           => '6',
+      'max'           => '200',
+      'default_value' => '30',
+      'help_link'     => '',
+      'regex'         => '^[0-9]{1,3}$',
+      'size'          => '3',
+      'width'         => '75',
+      'maxlength'     => '3',
+    ),
     'thumbcols' => array(
       'type'          => 'textfield',
       'min'           => '1',

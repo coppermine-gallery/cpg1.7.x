@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2021 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * index.php
- * @since  1.6.10
+ * @since  1.7.01
  */
 
 /**
@@ -138,16 +138,16 @@ EOT;
     static $template = '';
 
     if ($template == '') {
-        $params = array(
+        $params = [
             '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
-            );
+        ];
 
         $template = template_eval($template_album_moderator_menu, $params);
     }
 
-    $params = array(
+    $params = [
         '{ALBUM_ID}' => $id,
-    );
+    ];
 
     return template_eval($template, $params);
 }
@@ -169,21 +169,21 @@ function html_albummenu($id)
 
     if ($template == '') {
         list($timestamp, $form_token) = getFormToken();
-        $params = array(
+        $params = [
             '{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
             '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
             '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
             '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             '{FORM_TOKEN}' => $form_token,
             '{TIMESTAMP}' => $timestamp
-        );
+        ];
 
         $template = template_eval($template_album_admin_menu, $params);
     }
 
-    $params = array(
+    $params = [
         '{ALBUM_ID}' => $id,
-    );
+    ];
 
     return template_eval($template, $params);
 }
@@ -222,20 +222,20 @@ EOT;
 
     if ($template == '') {
         list($timestamp, $form_token) = getFormToken();
-        $params = array(
+        $params = [
             '{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
             '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
             '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
             '{FORM_TOKEN}' => $form_token,
             '{TIMESTAMP}' => $timestamp
-        );
+        ];
 
         $template = template_eval($template_album_admin_no_pic_edit_menu, $params);
     }
 
-    $params = array(
+    $params = [
         '{ALBUM_ID}' => $id,
-    );
+    ];
 
     return template_eval($template, $params);
 }
@@ -267,7 +267,7 @@ function get_subcat_data(&$cat_data)
     function cpg_get_last_visible_cid($categories, $lft) {
         global $CONFIG, $CURRENT_CAT_DEPTH;
 
-        static $lft_cid_map = array();
+        static $lft_cid_map = [];
 
         if (array_key_exists($lft, $lft_cid_map)) {
             return $lft_cid_map[$lft];
@@ -281,7 +281,7 @@ function get_subcat_data(&$cat_data)
         }
     }
 
-    $categories    = array();
+    $categories    = [];
     $forbidden_set = (!$CONFIG['show_private'] && $FORBIDDEN_SET_DATA) ? 'AND r.aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')' : '';
     $lft_rgt       = $rgt ? "AND lft BETWEEN $lft AND $rgt" : '';
 
@@ -431,7 +431,7 @@ function get_subcat_data(&$cat_data)
             $HIDE_USER_CAT = 1;
         } elseif ($pic_count == 0 && $album_count == 0) {
             $user_thumb = str_repeat($indent, $level-1);
-            $cat_data[] = array($link, $cat['details']['description'], 'cat_thumb' => $user_thumb);
+            $cat_data[] = [$link, $cat['details']['description'], 'cat_thumb' => $user_thumb, 'cat_level' => $level];
         } else {
             // Check if you need to show first level album thumbnails
             if ($CONFIG['first_level'] && $cid != USER_GAL_CAT && $level <= $CONFIG['subcat_level']) {
@@ -439,7 +439,7 @@ function get_subcat_data(&$cat_data)
             } else {
                 $cat_albums = '';
             }
-            $cat_data[] = array($link, $cat['details']['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums, 'cat_thumb' => $user_thumb);
+            $cat_data[] = [$link, $cat['details']['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums, 'cat_thumb' => $user_thumb, 'cat_level' => $level];
         }
 
     } // foreach categories
@@ -466,7 +466,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     // Build the breadcrumb
     breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT);
     // Build the category list
-    $cat_data = array();
+    $cat_data = [];
 
     get_subcat_data($cat_data);
 
@@ -532,21 +532,21 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
             $hit_count = (int)$nbEnr[0];
 
             if (count($cat_data)) {
-                $statistics = strtr($lang_list_categories['stat1'], array(
+                $statistics = strtr($lang_list_categories['stat1'], [
                     '[pictures]' => '<strong>' . cpg_float2decimal($picture_count) . '</strong>',
                     '[albums]'   => '<strong>' . cpg_float2decimal($album_count) . '</strong>',
                     '[cat]'      => '<strong>' . cpg_float2decimal($cat_count) . '</strong>',
                     '[comments]' => '<strong>' . cpg_float2decimal($comment_count) . '</strong>',
                     '[views]'    => '<strong>' . cpg_float2decimal($hit_count) . '</strong>',
-                    ));
+                    ]);
             } else {
                 $STATS_IN_ALB_LIST = true;
-                $statistics = strtr($lang_list_categories['stat3'], array(
+                $statistics = strtr($lang_list_categories['stat3'], [
                     '[pictures]' => '<strong>' . cpg_float2decimal($picture_count) . '</strong>',
                     '[albums]' => '<strong>' . cpg_float2decimal($album_count) . '</strong>',
                     '[comments]' => '<strong>' . cpg_float2decimal($comment_count) . '</strong>',
                     '[views]' => '<strong>' . cpg_float2decimal($hit_count) . '</strong>',
-                    ));
+                    ]);
             }
         } else {
             $statistics = '';
@@ -577,7 +577,7 @@ function list_users()
     $user_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
     $totalPages    = ceil($user_count / $user_per_page);
 
-    $user_list = array();
+    $user_list = [];
     foreach ($rowset as $user) {
         $cpg_nopic_data   = cpg_get_system_thumb('nopic.jpg', $user['user_id']);
         $user_thumb       = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image thumbnail" border="0" alt="" />';
@@ -611,20 +611,20 @@ function list_users()
         $albums_txt = sprintf($lang_list_users['n_albums'], $user_album_count);
         $pictures_txt = sprintf($lang_list_users['n_pics'], $user_pic_count);
 
-        $params = CPGPluginAPI::filter('user_caption_params', array(
+        $params = CPGPluginAPI::filter('user_caption_params', [
             '{USER_NAME}' => $user['user_name'],
             '{USER_ID}'   => $user['user_id'],
             '{ALBUMS}'    => $albums_txt,
             '{PICTURES}'  => $pictures_txt,
-            ));
+            ]);
 
         $caption = template_eval($template_user_list_info_box, $params);
 
-        $user_list[] = array(
+        $user_list[] = [
             'cat'     => FIRST_USER_CAT + $user['user_id'],
             'image'   => $user_thumb,
             'caption' => $caption,
-        );
+        ];
     }
     theme_display_thumbnails($user_list, $user_count, '', '', 1, $PAGE, $totalPages, false, true, 'user');
 }
@@ -729,8 +729,8 @@ function list_albums()
     $approved = 'AND approved=\'YES\'';
     $forbidden_set_string = ((count($FORBIDDEN_SET_DATA) > 0) ? ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')' : '');
 
-    $last_pids = array();
-    $last_pid_data = array();
+    $last_pids = [];
+    $last_pid_data = [];
 
     foreach ($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
@@ -773,7 +773,7 @@ function list_albums()
             $count = $alb_stat['pic_count'];
             $alb_hits = $alb_stat['alb_hits'];
         } else {
-            $alb_stat = array();
+            $alb_stat = [];
             $count = 0;
             $alb_hits = 0;
         }
@@ -873,7 +873,7 @@ function album_adm_menu($aid, $cat, $owner)
 
     static $public_album_uploads = null;
     if ($public_album_uploads === null) {
-        $public_album_uploads = array();
+        $public_album_uploads = [];
         $result = cpg_db_query("SELECT a.aid FROM {$CONFIG['TABLE_ALBUMS']} AS a INNER JOIN {$CONFIG['TABLE_PICTURES']} as p ON p.aid = a.aid WHERE uploads = 'YES' AND category < ".FIRST_USER_CAT." AND (visibility = '0' OR visibility IN ".USER_GROUP_SET." OR alb_password != '') AND owner_id = ".USER_ID);
         while ($row = $result->fetchAssoc()) {
             $public_album_uploads[] = $row['aid'];
@@ -961,13 +961,13 @@ function list_cat_albums($cat, $catdata)
 
     $totalPages = ceil($nbAlb / $alb_per_page);
 
-    $alb_list = array();
+    $alb_list = [];
 
     $approved = ' AND approved=\'YES\'';
     $forbidden_set_string = ((count($FORBIDDEN_SET_DATA) > 0) ? ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')' : '');
 
-    $last_pids = array();
-    $last_pid_data = array();
+    $last_pids = [];
+    $last_pid_data = [];
 
     foreach ($catdata['subalbums'] as $aid => $album) {
         if ($CONFIG['link_pic_count'] == 1 || $album['pic_count'] == 0) {
@@ -1093,7 +1093,7 @@ if (!$file) {
 
     // Gather data for categories
     $breadcrumb        = '';
-    $cat_data          = array();
+    $cat_data          = [];
     $statistics        = '';
     $STATS_IN_ALB_LIST = false;
 

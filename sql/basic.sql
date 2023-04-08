@@ -8,7 +8,7 @@
 ##
 ##  ********************************************
 ##  sql/basic.sql
-##  @since  1.7.00
+##  @since  1.7.01
 ##  ********************************************
 
 START TRANSACTION;
@@ -202,6 +202,7 @@ INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
 INSERT INTO CPG_config VALUES ('thumbrows', '3');
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('thumb_width', '128');
+INSERT INTO CPG_config VALUES ('thumbs_per', '30');
 INSERT INTO CPG_config VALUES ('time_offset', '0');
 INSERT INTO CPG_config VALUES ('transparent_overlay', '0');
 INSERT INTO CPG_config VALUES ('unsharp_amount', '120');

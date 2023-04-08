@@ -3,11 +3,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2020 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
- * css/coppermine.css
- * @since  1.6.08
+ * css/theme2.css
+ * @since  1.7.01
  */
 
 form {
@@ -167,6 +167,37 @@ div#film {
 
 /******** THEME2 ********/
 
+.admin-menu-wrapper, .user-admin-menu {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	/* justify-items: center; */
+	gap: 2px;
+}
+
+.admin-menu-wrapper li, .user-admin-menu li {
+	padding: 2px;
+	white-space: nowrap;
+	border: 1px solid #ccd7e0;
+	margin: 0;
+	list-style: none;
+}
+
+.r-cat-albs-f {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	justify-content: space-around;
+}
+
+.cat-af-cnt {
+	float: right;
+	margin: .25rem .25rem 0 1.5rem;
+}
+.catrow p {
+	margin-top: .5rem;
+}
+
 .r-thumbs {
 	display: flex;
 	flex-flow: wrap;
@@ -194,5 +225,15 @@ div#film {
 .r-thumbnail {
 	min-width: 140px;
 	text-align: center;
+	width: 100%;
+	height: 100%;
 }
 
+.image-l {
+	width: 100%;
+	height: auto;
+}
+.image-p {
+	height: 100%;
+	width: auto;
+}

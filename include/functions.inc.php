@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * include/functions.inc.php
- * @since  1.7.00
+ * @since  1.7.01
  */
 
 require_once 'funcs.inc.php';
@@ -2597,6 +2597,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
     $superCage = Inspekt::makeSuperCage();
 
     $thumb_per_page = $thumbcols * $thumbrows;
+    if (defined('THEME_IS_V2')) $thumb_per_page = $CONFIG['thumbs_per'] ?? $thumb_per_page;
     $lower_limit    = ($page - 1) * $thumb_per_page;
 
     $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);
@@ -3735,7 +3736,7 @@ function cpg_alert_dev_version()
 
     $return = '';
 
-    if (COPPERMINE_VERSION_STATUS != 'stable' && COPPERMINE_VERSION_STATUS != 'RC') {
+    if (!CPG_DVL && COPPERMINE_VERSION_STATUS != 'stable' && COPPERMINE_VERSION_STATUS != 'RC') {
         $return = <<< EOT
         <div class="cpg_message_warning">
         <h2>{$lang_version_alert['version_alert']}</h2>

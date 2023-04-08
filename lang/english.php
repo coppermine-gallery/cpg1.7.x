@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * lang/english.php
- * @since  1.7.00
+ * @since  1.7.01
  */
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -725,6 +725,7 @@ $lang_admin_php['link_pic_count'] = 'Show number of linked files';
 $lang_admin_php['link_last_upload'] = 'Regard upload time of linked files in album info'; // cpg1.6
 $lang_admin_php['thumbcols'] = 'Number of columns on thumbnail page';
 $lang_admin_php['thumbrows'] = 'Number of rows on thumbnail page';
+$lang_admin_php['thumbs_per'] = 'Number of thumbnails per page (Theme2)';
 $lang_admin_php['max_tabs'] = 'Maximum number of tabs to display';
 $lang_admin_php['tabs_dropdown'] = 'Show dropdown list of all pages next to tabs';
 $lang_admin_php['caption_in_thumbview'] = 'Display file caption (in addition to title) below the thumbnail';
