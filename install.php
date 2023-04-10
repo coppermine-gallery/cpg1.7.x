@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * install.php
- * @since  1.7.00
+ * @since  1.7.02
  */
 
 ########################
@@ -2051,7 +2051,7 @@ class GDtest
 				'error'		=> 'write_error',
 			);
 		}
-		@imagedestroy($source_a);
+		@imagedestroy($source);
 
 		return $results;
 	}

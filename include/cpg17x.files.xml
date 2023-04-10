@@ -184,10 +184,10 @@
 	</element>
 	<element>
 		<fullpath>bridge/smf21.inc.php</fullpath>
-		<version>1.6.16</version>
+		<version>1.7.02</version>
 		<status>optional</status>
 		<permission>read</permission>
-		<hash>70eed1c7a08fcb71d02e14633bd46dd4</hash>
+		<hash>17606994e2fde38e87468952421ee2c4</hash>
 	</element>
 	<element>
 		<fullpath>bridge/udb_base.inc.php</fullpath>
@@ -5234,10 +5234,10 @@
 	</element>
 	<element>
 		<fullpath>include/cpg.inc.php</fullpath>
-		<version>1.7.01</version>
+		<version>1.7.02</version>
 		<status>mandatory</status>
 		<permission>read</permission>
-		<hash>4d933cf59bc688261fdd8b151f98bd65</hash>
+		<hash>c47d6c2e3900ee806fa1d9aedae06f5a</hash>
 	</element>
 	<element>
 		<fullpath>include/crop.inc.php</fullpath>
@@ -6915,10 +6915,10 @@
 	</element>
 	<element>
 		<fullpath>install.php</fullpath>
-		<version>1.7.00</version>
+		<version>1.7.02</version>
 		<status>mandatory</status>
 		<permission>read</permission>
-		<hash>e9b3a7fae9affa8a5b365e371bb717d7</hash>
+		<hash>da772c0fd65b21d53a1fcac6753b7a27</hash>
 	</element>
 	<element>
 		<fullpath>js/</fullpath>
@@ -8008,10 +8008,10 @@
 	</element>
 	<element>
 		<fullpath>sql/update.sql</fullpath>
-		<version>1.7.00</version>
+		<version>1.7.02</version>
 		<status>mandatory</status>
 		<permission>read</permission>
-		<hash>ee1ec708f2812253f416c475b3b551ef</hash>
+		<hash>9e3770871e233cb31e9e4d70917273f1</hash>
 	</element>
 	<element>
 		<fullpath>stat_details.php</fullpath>
