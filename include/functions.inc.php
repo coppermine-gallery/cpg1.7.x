@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * include/functions.inc.php
- * @since  1.7.01
+ * @since  1.7.03
  */
 
 require_once 'funcs.inc.php';
@@ -2603,6 +2603,13 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
     $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);
 
     $total_pages = ceil($thumb_count / $thumb_per_page);
+
+	//	tuck away the page/tab data for use elsewhere
+	if ($display_tabs) {
+		$CONFIG['tab-prevP'] = $page > 1 ? $page-1 : 0;
+		$CONFIG['tab-nextP'] = $page < $total_pages ? $page+1 : 0;
+		$CONFIG['tab-totlP'] = $total_pages;
+	}
 
     $i = 0;
 

@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2020 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * thumbnails.php
- * @since  1.6.08
+ * @since  1.7.03
  */
 
 /**
@@ -40,6 +40,8 @@ if (USER_ID && (USER_ACCESS_LEVEL == 0)) {
 if ($CONFIG['enable_smilies']) {
     include 'include/smilies.inc.php';
 }
+
+js_include('js/tabnav.js');
 
 /**
  * Main code

@@ -1467,7 +1467,7 @@ $template_tab_display = [
 	'active_tab'		=> '<div align="center" valign="middle" class="tableb tableb_alternate">%d</div>',
 	'inactive_tab'		=> '<div align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></div>' . $LINEBREAK,
 	'nav_tab'			=> '<div align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></div>' . $LINEBREAK,
-	'nav_tab_nolink'	=> '<div align="center" valign="middle" class="navmenu">%s</div>' . $LINEBREAK,
+	'nav_tab_nolink'	=> '<div align="center" valign="middle" class="navmenu disabled"><a>%s</a></div>' . $LINEBREAK,
 	'allpages_dropdown'	=> '<div align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</div>' . $LINEBREAK,
 	'page_gap'			=> '<div align="center" valign="middle" class="navmenu">-</div>' . $LINEBREAK,
 	'tab_spacer'		=> '<div><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></div>' . $LINEBREAK,
@@ -1602,6 +1602,13 @@ function pagefooter()
 
 	if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
 		cpg_debug_output();
+	}
+
+	if (defined('THUMBNAILS_PHP')) {
+		$prevp = $CONFIG['tab-prevP'] ?? 0;
+		$nextp = $CONFIG['tab-nextP'] ?? 0;
+		$totlp = $CONFIG['tab-totlP'] ?? 1;
+		echo "<script>kt_nav.init('.alb-img-cels',{$prevp},{$nextp},{$totlp})</script>";
 	}
 
 	$template_vars = [
@@ -1851,6 +1858,9 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
 	// Header for tabs
 	$tabs .= $template['tab_header'];
 
+$tabs .= '<div class="navmenu"></div>';
+
+//	$tabs .= '<div><img src="images/icons/prevps.png" /></div>';
 	if ($CONFIG['tabs_dropdown']) {
 		// Dropdown list for all pages
 		preg_match('/cat=([\d]+)/', $template['page_link'], $matches);
@@ -1884,15 +1894,16 @@ EOT;
 
 	// Previous page tab
 	if ($curr_page != ($start - 1)) {
-		$tabs .= sprintf($template['nav_tab'], $curr_page-1, cpg_fetch_icon('tab_left',0,$lang_create_tabs['previous']));
+		$tabs .= sprintf($template['nav_tab'], $curr_page-1, cpg_fetch_icon('prevp24',0,$lang_create_tabs['previous']));
 	} else {
 		// A previous tab with link is not needed.
 		// If you want to show a disabled previous tab,
 		//   create an image 'left_inactive.png', put it into themes/YOUR_THEME/images/icons/,
 		//   then uncomment the line below.
-		// $tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('left_inactive',0,$lang_create_tabs['previous']));
+		$tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('prevp24',0,$lang_create_tabs['previous']));
 	}
 
+/*
 	// Page 1 tab
 	if ($curr_page == 1) {
 		$tabs .= sprintf($template['active_tab'], 1);
@@ -1909,7 +1920,7 @@ EOT;
 	// Middle block of tabs
 	for ($page = $start ; $page <= $end; $page++) {
 		if (!$page_gap || ($page_gap && ($page != $start))) {
-			$tabs .= $template['tab_spacer'];
+//			$tabs .= $template['tab_spacer'];
 		}
 		if ($page == $curr_page) {
 			$tabs .= sprintf($template['active_tab'], $page);
@@ -1925,7 +1936,7 @@ EOT;
 
 	// Last page tab
 	if (!$page_gap) {
-		$tabs .= $template['tab_spacer'];
+//		$tabs .= $template['tab_spacer'];
 	}
 	if ($total_pages > 1) {
 		if ($curr_page == $total_pages) {
@@ -1934,16 +1945,16 @@ EOT;
 			$tabs .= sprintf($template['inactive_tab'], $total_pages, $total_pages);
 		}
 	}
-
+*/
 	// Next page tab
 	if ($curr_page != $total_pages) {
-		$tabs .= sprintf($template['nav_tab'], $curr_page + 1, cpg_fetch_icon('tab_right',0,$lang_create_tabs['next']));
+		$tabs .= sprintf($template['nav_tab'], $curr_page + 1, cpg_fetch_icon('nextp24',0,$lang_create_tabs['next']));
 	} else {
 		// A next tab with link is not needed.
 		// If you want to show a disabled next tab,
 		//   create an image 'right_inactive.png', put it into themes/YOUR_THEME/images/icons/,
 		//   then uncomment the line below.
-		// $tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('right_inactive',0,$lang_create_tabs['next']));
+		$tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('nextp24',0,$lang_create_tabs['next']));
 	}
 
 	// Trailer for tabs
