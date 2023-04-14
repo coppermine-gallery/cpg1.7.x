@@ -284,7 +284,7 @@
 	</element>
 	<element>
 		<fullpath>css/theme2.css</fullpath>
-		<version>1.7.01</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>c05d2af9bfcdf6e68d387f8443dd0d41</hash>
@@ -5234,7 +5234,7 @@
 	</element>
 	<element>
 		<fullpath>include/cpg.inc.php</fullpath>
-		<version>1.7.02</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>c47d6c2e3900ee806fa1d9aedae06f5a</hash>
@@ -5331,14 +5331,14 @@
 	</element>
 	<element>
 		<fullpath>include/funcs.inc.php</fullpath>
-		<version>1.7.00</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>06e183276c8c78f513f21ffd522c1825</hash>
 	</element>
 	<element>
 		<fullpath>include/functions.inc.php</fullpath>
-		<version>1.7.01</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>561c8849d32dafeaf5e71ff46990c3f7</hash>
@@ -5387,14 +5387,14 @@
 	</element>
 	<element>
 		<fullpath>include/init.inc.php</fullpath>
-		<version>1.7.00</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>b7b11f29844f7a7320fb440600f50aac</hash>
 	</element>
 	<element>
 		<fullpath>include/inspekt.php</fullpath>
-		<version>1.6.22</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>41f2f2230f75b606f4f2c120d22bd86a</hash>
@@ -5406,14 +5406,14 @@
 	</element>
 	<element>
 		<fullpath>include/inspekt/cage.php</fullpath>
-		<version>1.6.08</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>fea5a2eb6a9f78122a18cd3b46525df1</hash>
 	</element>
 	<element>
 		<fullpath>include/inspekt/error.php</fullpath>
-		<version>1.6.03</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>f011ca534d4a67eceb4b539d95b26bd6</hash>
@@ -5427,7 +5427,7 @@
 	</element>
 	<element>
 		<fullpath>include/inspekt/supercage.php</fullpath>
-		<version>1.6.03</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>8c3d505bf5beb32bb347016845787e8b</hash>
@@ -5601,7 +5601,7 @@
 	</element>
 	<element>
 		<fullpath>include/themes2.inc.php</fullpath>
-		<version>1.7.01</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>1da84a02fc39be6f3f390d96cbefb85b</hash>
@@ -7306,7 +7306,7 @@
 	</element>
 	<element>
 		<fullpath>notifyupload.php</fullpath>
-		<version>1.6.03</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>972cd2697f8e1717590afd289e82eae0</hash>
@@ -7720,14 +7720,14 @@
 	</element>
 	<element>
 		<fullpath>plugins/upload_h5a/js/upload.js</fullpath>
-		<version>1.6.23</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>9bd6b843e45bb892dc83b48163cba600</hash>
 	</element>
 	<element>
 		<fullpath>plugins/upload_h5a/js/upload.min.js</fullpath>
-		<version>1.6.23</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>c4faed5a82d11667b3f4f565e8a528ab</hash>
@@ -9123,7 +9123,7 @@
 	</element>
 	<element>
 		<fullpath>thumbnails.php</fullpath>
-		<version>1.6.08</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>b86e9894a9a1ae11657dfefe0ab7cc8e</hash>

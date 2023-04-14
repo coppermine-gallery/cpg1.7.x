@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * include/init.inc.php
- * @since  1.7.00
+ * @since  1.7.03
  */
 
 defined('IN_COPPERMINE') or die('Not in Coppermine...');
@@ -21,20 +21,6 @@ require_once 'cpg.inc.php';
 
 // List of valid meta albums - needed for displaying 'no image to display' message
 $valid_meta_albums = ['lastcom','lastcomby','lastup','lastupby','topn','toprated','lasthits','random','search','lastalb','favpics','datebrowse'];
-
-// HTML tags replace pairs (used at some places for input validation)
-$HTML_SUBST = [
-	'&' => '&amp;',
-	'"' => '&quot;',
-	'<' => '&lt;',
-	'>' => '&gt;',
-	'%26' => '&amp;',
-	'%22' => '&quot;',
-	'%3C' => '&lt;',
-	'%3E' => '&gt;',
-	'%27' => '&#39;',
-	'\'' => '&#39;'
-	];
 
 // Store all reported errors in the $cpgdebugger
 require_once 'include/debugger.inc.php';

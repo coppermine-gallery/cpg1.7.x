@@ -8,7 +8,7 @@
  * @license	GNU General Public License version 3 or later; see LICENSE
  *
  * include/inspekt.php
- * @since  1.6.22
+ * @since  1.7.03
  */
 
 /**
@@ -26,17 +26,17 @@
 /**
  * Inspekt_Error
  */
-require_once('include/inspekt/error.php');
+require_once 'include/inspekt/error.php';
 
 /**
  * Inspekt_Cage
  */
-require_once('include/inspekt/cage.php');
+require_once 'include/inspekt/cage.php';
 
 /**
  * Inspekt_Supercage
  */
-require_once('include/inspekt/supercage.php');
+require_once 'include/inspekt/supercage.php';
 
 
 /**
@@ -211,6 +211,33 @@ abstract class Inspekt
 			$_instance = Inspekt_Cage::Factory($_ENV, $strict);
 		}
 		$GLOBALS['HTTP_ENV_VARS'] = NULL;
+		return $_instance;
+	}
+
+
+	/**
+	 * Returns the php://input (JSON) data wrapped in an Inspekt_Cage object
+	 *
+	 * This utilizes a singleton pattern to get around scoping issues
+	 *
+	 * @return Inspekt_Cage
+	 * @static
+	 */
+	public static function makeJsonCage() {
+		/**
+		 * @staticvar $_instance
+		 */
+		static $_instance;
+
+		if (!isset($_instance)) {
+			$jray = [];
+			if (stripos($_SERVER['CONTENT_TYPE'] ?? '', 'json')) {
+				$pinp = file_get_contents('php://input');
+				$jray = json_decode($pinp, true);
+				if (!$jray) $jray = [];
+			}
+			$_instance = Inspekt_Cage::Factory($jray, false);
+		}
 		return $_instance;
 	}
 

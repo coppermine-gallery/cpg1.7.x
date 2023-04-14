@@ -1,18 +1,15 @@
 <?php
-/*************************
-  Coppermine Photo Gallery
-  ************************
-  Copyright (c) 2003-2016 Coppermine Dev Team
-  v1.0 originally written by Gregory Demar
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 3
-  as published by the Free Software Foundation.
-
-  ********************************************
-  Coppermine version: 1.6.03
-  $HeadURL$
-**********************************************/
+/**
+ * Coppermine Photo Gallery
+ *
+ * v1.0 originally written by Gregory Demar
+ *
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
+ * @license	GNU General Public License version 3 or later; see LICENSE
+ *
+ * include/inspekt/supercage.php
+ * @since  1.7.03
+ */
 
 /**
  * Inspekt Supercage
@@ -22,7 +19,7 @@
  * @package Inspekt
  */
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+defined('IN_COPPERMINE') or die('Not in Coppermine...');
 
 /**
  * require main Inspekt class
@@ -67,6 +64,13 @@ Class Inspekt_Supercage {
 	 * @var Inspekt_Cage
 	 */
 	var $env;
+
+	/**
+	 * The json cage
+	 *
+	 * @var Inspekt_Cage
+	 */
+	var $json;
 
 	/**
 	 * The files cage
@@ -120,17 +124,18 @@ Class Inspekt_Supercage {
 	 * @param boolean $strict
 	 */
 	function _makeCages($strict=TRUE) {
-		$this->get	= Inspekt::makeGetCage($strict);
+		$this->get = Inspekt::makeGetCage($strict);
 		$this->post	= Inspekt::makePostCage($strict);
-		$this->cookie	= Inspekt::makeCookieCage($strict);
-		$this->env	= Inspekt::makeEnvCage($strict);
-		$this->files	= Inspekt::makeFilesCage($strict);
+		$this->cookie = Inspekt::makeCookieCage($strict);
+		$this->env = Inspekt::makeEnvCage($strict);
+		$this->json	= Inspekt::makeJsonCage($strict);
+		$this->files = Inspekt::makeFilesCage($strict);
         /**
          * Don't put session in cage as it will nullify $_SESSION and we will loose the session completely.
          * TODO: Find a way to put the session data in cage and still retain the session correctly
          */
-		//$this->session= Inspekt::makeSessionCage($strict);
-		$this->server	= Inspekt::makeServerCage($strict);
+		//$this->session = Inspekt::makeSessionCage($strict);
+		$this->server = Inspekt::makeServerCage($strict);
 	}
 
 }

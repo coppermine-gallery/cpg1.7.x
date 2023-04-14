@@ -8,7 +8,7 @@
  * @license	   GNU General Public License version 3 or later; see LICENSE
  *
  * include/cpg.inc.php
- * @since  1.7.02
+ * @since  1.7.03
  */
 
 define('COPPERMINE_VERSION', '1.7.02');
@@ -48,6 +48,20 @@ if ($register_globals_flag && is_array($GLOBALS)) {
 		}
 	}
 }
+
+// HTML tags replace pairs (used at some places for input validation)
+$HTML_SUBST = [
+	'&' => '&amp;',
+	'"' => '&quot;',
+	'<' => '&lt;',
+	'>' => '&gt;',
+	'%26' => '&amp;',
+	'%22' => '&quot;',
+	'%3C' => '&lt;',
+	'%3E' => '&gt;',
+	'%27' => '&#39;',
+	'\'' => '&#39;'
+	];
 
 
 

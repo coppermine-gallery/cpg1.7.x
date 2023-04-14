@@ -7,7 +7,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * css/theme2.css
- * @since  1.7.01
+ * @since  1.7.03
  */
 
 form {
@@ -205,15 +205,20 @@ div#film {
 	justify-content: center;
 }
 
-.r-thm-tabs {
-	display: grid;
-	grid-template-columns: min-content 1fr min-content min-content min-content;
+.r-thm-tabs, .r-alb-tabs {
+/*	display: grid;
+	grid-template-columns: min-content 1fr min-content min-content min-content;*/
+	display: flex;
+	flex-wrap: wrap;
 }
 .r-thm-tabs .navmenu.disabled img {
 	opacity: .3;
 }
 .r-thm-tabs .navmenu.disabled a:hover {
 	background: unset;
+}
+.navmenu.space {
+	flex-grow: 1;
 }
 
 .alb-img-cels {
@@ -223,7 +228,7 @@ div#film {
 	justify-content: space-between;
 	justify-items: center;
 	row-gap: 0.5rem;
-	touch-action: pan-x;
+	touch-action: pan-y;
 }
 
 .alb-img-cels-f {

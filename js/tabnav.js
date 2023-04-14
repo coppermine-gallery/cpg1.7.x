@@ -48,14 +48,14 @@ var kt_nav = (function () {
 	const tMove = (evt) => {
 		if (inSwipe) {
 			console.log(evt);
-			elm.style.marginLeft = (evt.screenX - startx + tlpx)+'px';
+	//		elm.style.marginLeft = (evt.screenX - startx + tlpx)+'px';
 		}
 	};
 	const tUp = (evt) => {
 		if (!inSwipe) return;
 		inSwipe = false;
 	//	tlpx = T.offsetLeft;
-		elm.style.marginLeft = 0;
+	//	elm.style.marginLeft = 0;
 		console.log(evt);
 		let ex = evt.screenX;
 		if (Math.abs(ex - startx) > 100) {

@@ -1,18 +1,15 @@
 <?php
-/*************************
-  Coppermine Photo Gallery
-  ************************
-  Copyright (c) 2003-2016 Coppermine Dev Team
-  v1.0 originally written by Gregory Demar
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License version 3
-  as published by the Free Software Foundation.
-
-  ********************************************
-  Coppermine version: 1.6.03
-  $HeadURL$
-**********************************************/
+/**
+ * Coppermine Photo Gallery
+ *
+ * v1.0 originally written by Gregory Demar
+ *
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
+ * @license    GNU General Public License version 3 or later; see LICENSE
+ *
+ * include/inspekt/error.php
+ * @since  1.7.03
+ */
 
 /**
  * Source file for Inspekt_Error
@@ -27,16 +24,7 @@
  * @package Inspekt
  *
  */
-class Inspekt_Error {
-
-	/**
-	 * Constructor
-	 *
-	 * @return Inspekt_Error
-	 */
-	function __construct() {
-
-	}
+abstract class Inspekt_Error {
 
 	/**
 	 * Raises an error.  In >= PHP5, this will throw an exception. In PHP4,
@@ -50,12 +38,12 @@ class Inspekt_Error {
 	 *
 	 * @static
 	 */
-	function raiseError($msg, $type=E_USER_WARNING) {
-		/*if (version_compare( PHP_VERSION, '5', '<' )) {
+	public static function raiseError($msg, $type=E_USER_WARNING) {
+		if (version_compare( PHP_VERSION, '5', '<' )) {
 			Inspekt_Error::raiseErrorPHP4($msg, $type);
 		} else {
 			throw new Exception($msg, $type);
-		}*/
+		}
 
 		Inspekt_Error::raiseErrorPHP4($msg, $type);
 	}
@@ -68,7 +56,7 @@ class Inspekt_Error {
 	 *
 	 * @static
 	 */
-	function raiseErrorPHP4 ($msg, $type=NULL) {
+	public static function raiseErrorPHP4 ($msg, $type=NULL) {
 
 		if (isset($type)) {
 			trigger_error($msg);
@@ -76,4 +64,5 @@ class Inspekt_Error {
 			trigger_error($msg, $type);
 		}
 	}
+
 }

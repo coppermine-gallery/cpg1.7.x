@@ -8,7 +8,7 @@
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * include/themes2.inc.php
- * @since  1.7.01
+ * @since  1.7.03
  */
 
 /////////////////////////////////////////////////////////////////
@@ -511,7 +511,7 @@ $template_album_list = <<<EOT
 <!-- BEGIN tabs -->
 	<tr><td>
 	<div>
-		<div>
+		<div class="r-alb-tabs row">
 			{TABS}
 		</div>
 	</div>
@@ -1468,9 +1468,9 @@ $template_tab_display = [
 	'inactive_tab'		=> '<div align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></div>' . $LINEBREAK,
 	'nav_tab'			=> '<div align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></div>' . $LINEBREAK,
 	'nav_tab_nolink'	=> '<div align="center" valign="middle" class="navmenu disabled"><a>%s</a></div>' . $LINEBREAK,
-	'allpages_dropdown'	=> '<div align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</div>' . $LINEBREAK,
+	'allpages_dropdown'	=> '<div align="center" valign="middle" style="white-space: nowrap" class="navmenu">%s</div>' . $LINEBREAK,
 	'page_gap'			=> '<div align="center" valign="middle" class="navmenu">-</div>' . $LINEBREAK,
-	'tab_spacer'		=> '<div><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></div>' . $LINEBREAK,
+	'tab_spacer'		=> '<div class="navmenu space"></div>' . $LINEBREAK,
 	'page_link'			=> '{LINK}'
 ];
 /******************************************************************************
@@ -1857,8 +1857,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
 
 	// Header for tabs
 	$tabs .= $template['tab_header'];
-
-$tabs .= '<div class="navmenu"></div>';
+	$tabs .= $template['tab_spacer'];
 
 //	$tabs .= '<div><img src="images/icons/prevps.png" /></div>';
 	if ($CONFIG['tabs_dropdown']) {
@@ -2775,7 +2774,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 
 	echo $footer;
 	// Tab display
-	$params = ['{COLUMNS}' => $columns, '{TABS}' => '<td-none>'.$tabs.'</td-none>'];
+	$params = ['{COLUMNS}' => $columns, '{TABS}' => $tabs];
 	echo template_eval($tabs_row, $params);
 
 //	endtable();

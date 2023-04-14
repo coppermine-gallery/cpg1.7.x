@@ -8,7 +8,7 @@
  * @license	   GNU General Public License version 3 or later; see LICENSE
  *
  * include/funcs.inc.php
- * @since  1.7.00
+ * @since  1.7.03
  */
 
 /**************************************************************************
@@ -1021,6 +1021,38 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
 function path2url($path)
 {
 	return str_replace('%2F', '/', rawurlencode($path));
+}
+
+/**
+ * Rewritten by Nathan Codding - Feb 6, 2001. Taken from phpBB code
+ * - Goes through the given string, and replaces xxxx://yyyy with an HTML <a> tag linking
+ *         to that URL
+ * - Goes through the given string, and replaces www.xxxx.yyyy[zzzz] with an HTML <a> tag linking
+ *         to http://www.xxxx.yyyy[/zzzz]
+ * - Goes through the given string, and replaces xxxx@yyyy with an HTML mailto: tag linking
+ *                to that email address
+ * - Only matches these 2 patterns either after a space, or at the beginning of a line
+ *
+ * Notes: the email one might get annoying - it's easy to make it more restrictive, though.. maybe
+ * have it require something like xxxx@yyyy.zzzz or such. We'll see.
+ */
+
+/**
+ * make_clickable()
+ *
+ * @param $text
+ * @return
+ **/
+
+function make_clickable($text)
+{
+    $ret = ' '.$text;
+
+    $ret = preg_replace("#([\n ])([a-z]+?)://([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+]+)#i", "\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>", $ret);
+    $ret = preg_replace("#([\n ])www\.([a-z0-9\-]+)\.([a-z0-9\-.\~]+)((?:/[a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+]*)?)#i", "\\1<a href=\"http://www.\\2.\\3\\4\" rel=\"external\">www.\\2.\\3\\4</a>", $ret);
+    $ret = preg_replace("#([\n ])([a-z0-9\-_.]+?)@([\w\-]+\.([\w\-\.]+\.)?[\w]+)#i", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>", $ret);
+
+    return substr($ret, 1);
 }
 
 
