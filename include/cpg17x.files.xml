@@ -326,7 +326,7 @@
 	</element>
 	<element>
 		<fullpath>displayimage.php</fullpath>
-		<version>1.6.15</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>b90fe2ec8e7dd4890af2b725f1d932f4</hash>

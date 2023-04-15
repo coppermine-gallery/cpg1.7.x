@@ -804,7 +804,7 @@ if (!isset($template_img_navbar)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the image navigation bar
 $template_img_navbar = <<<EOT
-	<div>
+	<div class="img-nav-bar">
 		<span align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" alt="{THUMB_TITLE}" /></a></span>
 <!-- BEGIN pic_info_button -->
 		<!-- button will be added by displayimage.js -->
@@ -814,7 +814,7 @@ $template_img_navbar = <<<EOT
 		<!-- button will be added by displayimage.js -->
 		<span id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></span>
 <!-- END slideshow_button -->
-		<span align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</span>
+		<span align="center" valign="middle" class="navmenu space" width="100%">{PIC_POS}</span>
 <!-- BEGIN report_file_button -->
 		<span align="center" valign="middle" class="navmenu" width="48"><a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/report.png" align="middle" alt="{REPORT_TITLE}" /></a></span>
 <!-- END report_file_button -->
@@ -822,16 +822,16 @@ $template_img_navbar = <<<EOT
 		<span align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png" align="middle" alt="{ECARD_TITLE}" /></a></span>
 <!-- END ecard_button -->
 <!-- BEGIN nav_start -->
-		<span align="center" valign="middle" class="navmenu" width="48"><a href="{START_TGT}" class="navmenu_pic" title="{START_TITLE}"><img src="{LOCATION}images/navbar/{START_IMAGE}" align="middle" alt="{START_TITLE}" /></a></span>
+		<span align="center" valign="middle" class="navmenu imgstart" width="48"><a href="{START_TGT}" class="navmenu_pic" title="{START_TITLE}"><img src="{LOCATION}images/navbar/{START_IMAGE}" align="middle" alt="{START_TITLE}" /></a></span>
 <!-- END nav_start -->
 <!-- BEGIN nav_prev -->
-		<span align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" align="middle" alt="{PREV_TITLE}" /></a></span>
+		<span align="center" valign="middle" class="navmenu imgprev" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" align="middle" alt="{PREV_TITLE}" /></a></span>
 <!-- END nav_prev -->
 <!-- BEGIN nav_next -->
-		<span align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" align="middle" alt="{NEXT_TITLE}" /></a></span>
+		<span align="center" valign="middle" class="navmenu imgnext" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" align="middle" alt="{NEXT_TITLE}" /></a></span>
 <!-- END nav_next -->
 <!-- BEGIN nav_end -->
-		<span align="center" valign="middle" class="navmenu" width="48"><a href="{END_TGT}" class="navmenu_pic" title="{END_TITLE}"><img src="{LOCATION}images/navbar/{END_IMAGE}" align="middle" alt="{END_TITLE}" /></a></span>
+		<span align="center" valign="middle" class="navmenu imgend" width="48"><a href="{END_TGT}" class="navmenu_pic" title="{END_TITLE}"><img src="{LOCATION}images/navbar/{END_IMAGE}" align="middle" alt="{END_TITLE}" /></a></span>
 <!-- END nav_end -->
 	</div>
 
@@ -1609,6 +1609,10 @@ function pagefooter()
 		$nextp = $CONFIG['tab-nextP'] ?? 0;
 		$totlp = $CONFIG['tab-totlP'] ?? 1;
 		echo "<script>kt_nav.init('.alb-img-cels',{$prevp},{$nextp},{$totlp})</script>";
+	}
+
+	if (defined('DISPLAYIMAGE_PHP')) {
+		echo "<script>kt_img_nav.init('.img-nav-bar','.display_media div div')</script>";
 	}
 
 	$template_vars = [

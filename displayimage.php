@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2021 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * displayimage.php
- * @since  1.6.15
+ * @since  1.7.03
  */
 
 define('IN_COPPERMINE', true);
@@ -16,7 +16,7 @@ define('DISPLAYIMAGE_PHP', true);
 define('SMILIES_PHP', true);
 define('INDEX_PHP', true);
 
-require('include/init.inc.php');
+require 'include/init.inc.php';
 
 if (!USER_ID && ($CONFIG['allow_unlogged_access'] <= 1)) {
 
@@ -36,6 +36,7 @@ if (USER_ID && (USER_ACCESS_LEVEL <= 1)) {
 
 if (!$superCage->get->keyExists('slideshow')) {
     js_include('js/displayimage.js');
+	js_include('js/tabnav.js');
 }
 
 if ($CONFIG['enable_smilies']) {
