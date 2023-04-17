@@ -91,18 +91,57 @@ function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$hre
 }  //{THEMES}
 
 
+if (!isset($template_burger_svg)) { //{THEMES}
+/******************************************************************************
+** Section <<<$template_burger_svg>>> - START
+******************************************************************************/
+// HTML template for sys_menu
+$template_burger_svg = <<<EOT
+	<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" onclick="toggle_resp_menu()">
+	<path stroke="currentColor" fill="currentColor" d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z"/>
+	<path stroke="currentColor" fill="currentColor" d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+	<path stroke="currentColor" fill="currentColor" d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+	</svg>
+EOT;
+/******************************************************************************
+** Section <<<$template_burger_svg>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+
+if (!isset($template_admin_burger_svg)) { //{THEMES}
+/******************************************************************************
+** Section <<<$template_admin_burger_svg>>> - START
+******************************************************************************/
+// HTML template for sys_menu
+$template_admin_burger_svg = <<<EOT
+	<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" onclick="toggle_resp_menu_admin()">
+	<path stroke="currentColor" fill="currentColor" d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z"/>
+	<path stroke="currentColor" fill="currentColor" d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+	<path stroke="currentColor" fill="currentColor" d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+	</svg>
+EOT;
+/******************************************************************************
+** Section <<<$template_admin_burger_svg>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+
 if (!isset($template_sys_menu)) { //{THEMES}
 /******************************************************************************
 ** Section <<<$template_sys_menu>>> - START
 ******************************************************************************/
 // HTML template for sys_menu
 $template_sys_menu = <<<EOT
+	<div class="sys-menu">
 	{BUTTONS}
+	</div>
 EOT;
 /******************************************************************************
 ** Section <<<$template_sys_menu>>> - END
 ******************************************************************************/
-} //{THEMES}
+}  //{THEMES}
+
 
 if (!isset($template_sub_menu)) { //{THEMES}
 /******************************************************************************
@@ -274,9 +313,13 @@ $template_gallery_admin_menu = <<<EOT
 EOT;
 
 $template_gallery_admin_menu = <<<EOT
+	<div class="admin-menu-container">
+	<div class="admin-menu-burger">
+		{$template_admin_burger_svg}
+	</div>
 	<ul class="admin-menu-wrapper">
 	<!-- BEGIN admin_approval -->
-		<li id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_ICO}{UPL_APP_LNK}</a></li>
+		<li class="admin-alert"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_ICO}{UPL_APP_LNK}</a></li>
 	<!-- END admin_approval -->
 	<!-- BEGIN config -->
 		<li><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_ICO}{ADMIN_LNK}</a></li>
@@ -348,6 +391,7 @@ $template_gallery_admin_menu = <<<EOT
 		<li><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></li>
 	<!-- END documentation -->
 	</ul>
+	</div>
 EOT;
 /******************************************************************************
 ** Section <<<$template_gallery_admin_menu>>> - END
@@ -1604,16 +1648,17 @@ function pagefooter()
 		cpg_debug_output();
 	}
 
+	$btm_script = '';
 	if (defined('THUMBNAILS_PHP')) {
 		$prevp = $CONFIG['tab-prevP'] ?? 0;
 		$nextp = $CONFIG['tab-nextP'] ?? 0;
 		$totlp = $CONFIG['tab-totlP'] ?? 1;
-		echo "<script>kt_nav.init('.alb-img-cels',{$prevp},{$nextp},{$totlp})</script>";
+		$btm_script .= "kt_nav.init('.alb-img-cels',{$prevp},{$nextp},{$totlp})";
 	}
-
 	if (defined('DISPLAYIMAGE_PHP')) {
-		echo "<script>kt_img_nav.init('.img-nav-bar','.display_media div div')</script>";
+		$btm_script .= "kt_img_nav.init('.img-nav-bar','.display_media div div')";
 	}
+	echo '<script>'.$btm_script.'</script>';
 
 	$template_vars = [
 		'{GAL_NAME}' => $CONFIG['gallery_name'],
@@ -2064,7 +2109,7 @@ if (!function_exists('theme_main_menu')) {  //{THEMES}
 function theme_main_menu($which)
 {
 	global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER, $CPG_PHP_SELF;
-	global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
+	global $lang_main_menu, $template_sys_menu, $template_sub_menu, $template_burger_svg, $lang_gallery_admin_menu;
 
 	static $sys_menu = '', $sub_menu = '';
 	if ($$which != '') {
@@ -2212,7 +2257,7 @@ function theme_main_menu($which)
 			$param['{CONTACT_TGT}'] .= "?referer=$REFERER";
 		}
 
-		$sys_menu = template_eval($template_sys_menu, $param);
+		$sys_menu = '<div class="menu-burger">'.$template_burger_svg.'</div><div class="menus-container">'.template_eval($template_sys_menu, $param);
 	} else {
 
 		if (!$CONFIG['custom_lnk_url']) {
@@ -2261,7 +2306,7 @@ function theme_main_menu($which)
 			'{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
 			'{UPL_APP_ICO}' => cpg_fetch_icon('file_approval', 1)
 			];
-		$sub_menu = template_eval($template_sub_menu, $param);
+		$sub_menu = template_eval($template_sub_menu, $param).'</div>';
 	}
 
 	return $$which;

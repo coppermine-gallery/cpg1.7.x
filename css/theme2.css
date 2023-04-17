@@ -165,10 +165,26 @@ div#film {
 	margin-right: 10px;
 }
 
+
 /******** THEME2 ********/
+
+.menus {
+	position: relative;
+}
+
+.menus-container {
+	margin-top: 1rem;
+/*	position: relative;*/
+}
+
+.admin-menu-container {
+/*	position: relative;*/
+	margin-top: 1rem;
+}
 
 .admin-menu-wrapper, .user-admin-menu {
 	display: flex;
+/*	position: relative;*/
 	flex-wrap: wrap;
 	justify-content: center;
 	/* justify-items: center; */
@@ -181,6 +197,10 @@ div#film {
 	border: 1px solid #ccd7e0;
 	margin: 0;
 	list-style: none;
+}
+
+.admin-alert {
+	background-image: linear-gradient(to right, coral, yellow);
 }
 
 .r-cat-albs-f {
@@ -214,6 +234,9 @@ div#film {
 }
 .r-thm-tabs .navmenu.disabled a:hover {
 	background: unset;
+}
+.r-thm-tabs.row div:first-of-type {
+	flex-grow: 1;
 }
 .navmenu.space {
 	flex-grow: 1;
@@ -251,4 +274,101 @@ div#film {
 .image-p {
 	height: 100%;
 	width: auto;
+}
+
+
+/* hamburger menu */
+
+.menu-burger {
+	display: none;
+}
+.menu-burger svg{
+	height: 2rem;
+	float: left;
+	cursor: pointer;
+}
+.admin-menu-burger {
+	display: none;
+}
+.admin-menu-burger svg {
+	height: 2rem;
+	float: right;
+	color: lightcoral;
+	cursor: pointer;
+}
+
+
+/*
+.hamb{
+	cursor: pointer;
+	float: right;
+	padding: 40px 20px;
+}
+.hamb-line {
+	background: var(--white);
+	display: block;
+	height: 2px;
+	position: relative;
+	width: 24px;
+}
+.hamb-line::before,
+.hamb-line::after{
+	background: var(--white);
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	transition: all .2s ease-out;
+	width: 100%;
+}
+.hamb-line::before{
+	top: 5px;
+}
+.hamb-line::after{
+	top: -5px;
+}
+*/
+
+@media (max-width: 767px) {
+	.menus-container {
+		margin: 0;
+		padding: .5rem;
+		font-size: medium;
+		position: absolute;
+		background-color: gainsboro;
+		border: 1px solid #BBB;
+		top: 2rem;
+		left: -400px;
+		transition: left .5s;
+	}
+	.sys-menu {
+		display: flex;
+		flex-flow: column;
+		align-items: start;
+		clear: left;
+		row-gap: 4px;
+		padding: 2px;
+	}
+	.sys-menu img {
+		display: none;
+	}
+	.menu-burger{
+		display: block;
+	}
+	.admin-menu-burger {
+		display: block;
+	}
+	.admin-menu-wrapper {
+	/*	display: none;*/
+		position: absolute;
+		flex-flow: column;
+		text-align: left;
+		font-size: medium;
+		background-color: gainsboro;
+		border: 1px solid #BBB;
+		padding: 8px;
+		right: -400px;
+		top: 2rem;
+		transition: right .5s;
+	}
 }
