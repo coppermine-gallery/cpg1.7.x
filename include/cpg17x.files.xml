@@ -7575,7 +7575,7 @@
 	</element>
 	<element>
 		<fullpath>plugins/upload_h5a/codebase.php</fullpath>
-		<version>1.7.00</version>
+		<version>1.7.03</version>
 		<status>mandatory</status>
 		<permission>read</permission>
 		<hash>b07dcc32c50e46f273fef7025db23a00</hash>
