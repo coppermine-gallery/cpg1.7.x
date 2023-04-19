@@ -249,13 +249,11 @@ function str_replace (search, replace, subject, count) {
 	return sa ? s : s[0];
 }
 
-function toggle_resp_menu () {
-	let mnul = document.querySelector(".menus-container");
-	mnul.style.left = mnul.style.left == "0px" ? "-400px" : 0;
-}
-function toggle_resp_menu_admin () {
-	let mnul = document.querySelector(".admin-menu-wrapper");
-	mnul.style.right = mnul.style.right == "0px" ? "-400px" : 0;
+function toggle_resp_menu (evt) {
+	let t = evt.target;
+	if (t.nodeName == 'path') t = t.parentElement;
+	let mnul = t.parentElement.nextElementSibling;
+	mnul.classList.toggle('stashed');
 }
 
 

@@ -369,13 +369,15 @@ a:hover {
     text-align: center;
 }
 
+/*
 .user-admin-menu {
 	text-align:center;
 }
+*/
 /*.user-admin-menu li {
 	display:inline-block;
 }*/
-
+/*
 .admin_menu_wrapper li, .user-admin-menu li {
 	display:inline-block;
 	padding: 2px;
@@ -383,6 +385,7 @@ a:hover {
     border: 1px solid #CCD7E0;
     margin:1px;
 }
+*/
 
 .admin_menu a {
     color: #000000;

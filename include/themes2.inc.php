@@ -97,32 +97,14 @@ if (!isset($template_burger_svg)) { //{THEMES}
 ******************************************************************************/
 // HTML template for sys_menu
 $template_burger_svg = <<<EOT
-	<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" onclick="toggle_resp_menu()">
-	<path stroke="currentColor" fill="currentColor" d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z"/>
-	<path stroke="currentColor" fill="currentColor" d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
-	<path stroke="currentColor" fill="currentColor" d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+	<svg viewBox="0 0 32 32" stroke="currentColor" fill="currentColor" onclick="toggle_resp_menu(event)">
+	<path d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z"/>
+	<path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
+	<path d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
 	</svg>
 EOT;
 /******************************************************************************
 ** Section <<<$template_burger_svg>>> - END
-******************************************************************************/
-}  //{THEMES}
-
-
-if (!isset($template_admin_burger_svg)) { //{THEMES}
-/******************************************************************************
-** Section <<<$template_admin_burger_svg>>> - START
-******************************************************************************/
-// HTML template for sys_menu
-$template_admin_burger_svg = <<<EOT
-	<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" onclick="toggle_resp_menu_admin()">
-	<path stroke="currentColor" fill="currentColor" d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z"/>
-	<path stroke="currentColor" fill="currentColor" d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
-	<path stroke="currentColor" fill="currentColor" d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/>
-	</svg>
-EOT;
-/******************************************************************************
-** Section <<<$template_admin_burger_svg>>> - END
 ******************************************************************************/
 }  //{THEMES}
 
@@ -315,9 +297,9 @@ EOT;
 $template_gallery_admin_menu = <<<EOT
 	<div class="admin-menu-container">
 	<div class="admin-menu-burger">
-		{$template_admin_burger_svg}
+		{$template_burger_svg}
 	</div>
-	<ul class="admin-menu-wrapper">
+	<ul class="admin-menu-wrapper stashed">
 	<!-- BEGIN admin_approval -->
 		<li class="admin-alert"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_ICO}{UPL_APP_LNK}</a></li>
 	<!-- END admin_approval -->
@@ -404,7 +386,10 @@ if (!isset($template_user_admin_menu)) { //{THEMES}
 ******************************************************************************/
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
-	<ul class="user-admin-menu">
+	<div class="admin-menu-burger">
+		{$template_burger_svg}
+	</div>
+	<ul class="user-admin-menu stashed">
 		<li><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBUMS_ICO}{ALBMGR_LNK}</a></li>
 		<li><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_ICO}{MODIFYALB_LNK}</a></li>
 		<li><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></li>
@@ -2257,7 +2242,7 @@ function theme_main_menu($which)
 			$param['{CONTACT_TGT}'] .= "?referer=$REFERER";
 		}
 
-		$sys_menu = '<div class="menu-burger">'.$template_burger_svg.'</div><div class="menus-container">'.template_eval($template_sys_menu, $param);
+		$sys_menu = '<div class="menu-burger">'.$template_burger_svg.'</div><div class="menus-container stashed">'.template_eval($template_sys_menu, $param);
 	} else {
 
 		if (!$CONFIG['custom_lnk_url']) {
@@ -2592,7 +2577,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 	$template_noalb = template_extract_block($template_cat_list, 'catrow_noalb');
 	$template = template_extract_block($template_cat_list, 'catrow');
 	$stack = [];
-	echo '<tr><td>';
+	if (count($cat_data) > 0) echo '<tr dcl="1"><td dcl="1">';
 	foreach ($cat_data as $category) {
 		while (count($stack) && $category['cat_level'] <= count($stack)) echo array_pop($stack);
 		echo "<div class=\"cat{$category['cat_level']}\">";
@@ -2633,7 +2618,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 //echo'<xmp align="left">';var_dump($category['cat_level']);echo'</xmp>';
 	}
 	while ($stack) echo array_pop($stack);
-	echo '</td></tr>';
+	if (count($cat_data) > 0) echo '</td></tr>';
 
 	if ($statistics && count($cat_data) > 0) {
 		$template = template_extract_block($template_cat_list, 'footer');
@@ -2642,9 +2627,8 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 	}
 
 
-	if (count($cat_data) > 0)
-		endtable();
-		echo template_extract_block($template_cat_list, 'spacer');
+	if (count($cat_data) > 0) endtable();
+	echo template_extract_block($template_cat_list, 'spacer');
 }
 /******************************************************************************
 ** Section <<<theme_display_cat_list>>> - END

@@ -172,13 +172,7 @@ div#film {
 	position: relative;
 }
 
-.menus-container {
-	margin-top: 1rem;
-/*	position: relative;*/
-}
-
-.admin-menu-container {
-/*	position: relative;*/
+.menus-container, .admin-menu-container, .user-admin-menu {
 	margin-top: 1rem;
 }
 
@@ -235,7 +229,7 @@ div#film {
 .r-thm-tabs .navmenu.disabled a:hover {
 	background: unset;
 }
-.r-thm-tabs.row div:first-of-type {
+.r-thm-tabs.row div:first-of-type, .r-alb-tabs.row div:first-of-type {
 	flex-grow: 1;
 }
 .navmenu.space {
@@ -298,36 +292,6 @@ div#film {
 }
 
 
-/*
-.hamb{
-	cursor: pointer;
-	float: right;
-	padding: 40px 20px;
-}
-.hamb-line {
-	background: var(--white);
-	display: block;
-	height: 2px;
-	position: relative;
-	width: 24px;
-}
-.hamb-line::before,
-.hamb-line::after{
-	background: var(--white);
-	content: '';
-	display: block;
-	height: 100%;
-	position: absolute;
-	transition: all .2s ease-out;
-	width: 100%;
-}
-.hamb-line::before{
-	top: 5px;
-}
-.hamb-line::after{
-	top: -5px;
-}
-*/
 
 @media (max-width: 767px) {
 	.menus-container {
@@ -337,9 +301,10 @@ div#film {
 		position: absolute;
 		background-color: gainsboro;
 		border: 1px solid #BBB;
+		height: fit-content;
 		top: 2rem;
-		left: -400px;
-		transition: left .5s;
+		left: 0;
+		transition: height .5s;
 	}
 	.sys-menu {
 		display: flex;
@@ -352,23 +317,29 @@ div#film {
 	.sys-menu img {
 		display: none;
 	}
-	.menu-burger{
+	.menu-burger, .admin-menu-burger {
 		display: block;
 	}
-	.admin-menu-burger {
-		display: block;
-	}
-	.admin-menu-wrapper {
-	/*	display: none;*/
+	.user-admin-menu, .admin-menu-wrapper {
 		position: absolute;
 		flex-flow: column;
 		text-align: left;
 		font-size: medium;
 		background-color: gainsboro;
+		margin: 0;
 		border: 1px solid #BBB;
-		padding: 8px;
-		right: -400px;
+		padding: .25rem;
+		height: fit-content;
+		right: 0;
 		top: 2rem;
-		transition: right .5s;
+		transition: height .5s;
+	}
+	.stashed {
+		margin: 0;
+		padding: 0;
+		height: 0;
+		border: none;
+		overflow-y: hidden;
+		transition: height .5s;
 	}
 }
