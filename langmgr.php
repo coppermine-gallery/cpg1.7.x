@@ -4,11 +4,11 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2022 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * langmgr.php
- * @since  1.6.20
+ * @since  1.7.03
  */
 define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
@@ -18,8 +18,8 @@ define('LANGMGR_PHP', true);
 TODO: make sure that the default language is not disabled
 */
 
-require_once('include/init.inc.php');
-require_once('include/sql_parse.php');
+require_once 'include/init.inc.php';
+require_once 'include/sql_parse.php';
 
 js_include('js/langmgr.js');
 
@@ -46,7 +46,7 @@ $help['complete'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language
 $help['enabled'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_enabled&amp;ae=language_manager_columns_enabled_end', '450', '300');
 
 pageheader($lang_langmgr_php['title']);
-print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return form_submit();">';
+echo '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return form_submit();">';
 $hide_icon = cpg_fetch_icon('hide_table_row', 2);
 $show_icon = cpg_fetch_icon('show_table_row', 2);
 
@@ -129,7 +129,7 @@ if ($superCage->post->keyExists('submit')) {
     // Output status messages if applicable
     if ($query_output != '') {
         starttable('100%', cpg_fetch_icon('info', 2).$lang_langmgr_php['status'], 1);
-        print <<< EOT
+        echo <<< EOT
         <tr>
             <td class="tableb">
                 <ul>
@@ -139,7 +139,7 @@ if ($superCage->post->keyExists('submit')) {
         </tr>
 EOT;
         endtable();
-        print '<br />'.$LINEBREAK;
+        echo '<br />'.$LINEBREAK;
     }
 }
 // Form has been submit --- end
@@ -191,7 +191,7 @@ ksort($lang_language_data);
 
 
 starttable('100%', '<h2>' . cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'] . $help['language_manager']. '</h2>', 9);
-print <<< EOT
+echo <<< EOT
     <tr>
         <td class="tableh2" colspan="6">
         </td>
@@ -310,8 +310,8 @@ foreach ($lang_language_data as $language) {
             if ($language['file_flag'] == '') {
                 $file_lookup_errors++;
             }
+        	@fclose($handle);
         }
-        @fclose($handle);
         $language['file_size'] = filesize('lang/'. $language['lang_id'] . '.php');
         // Alternating colors
         if ($loopCounter/2 == floor($loopCounter/2)) {
@@ -411,39 +411,39 @@ foreach ($lang_language_data as $language) {
         }
         // Flag icon population --- end
         // Actual table row output --- start
-        print <<< EOT
+        echo <<< EOT
     <tr>
         <td class="{$cellstyle}" rowspan="2" align="center">
           <input name="is_default" id="is_default_{$language['lang_id']}" type="radio" value="{$language['lang_id']}" class="radio" {$default_checked} {$enable_greyed_out} />
           <input type="hidden" name="lang_id[]" id="lang_id_{$language['lang_id']}" value="{$language['lang_id']}" />
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
           <input type="text" name="english_name_{$language['lang_id']}" id="english_name_{$language['lang_id']}" class="textinput" value="{$language['english_name']}" />{$reset_english}
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
           <input type="text" name="native_name_{$language['lang_id']}" id="native_name_{$language['lang_id']}" class="textinput" value="{$language['native_name']}" />{$reset_native}
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
           <input type="text" name="custom_name_{$language['lang_id']}" id="custom_name_{$language['lang_id']}" class="textinput" value="{$language['custom_name']}" />
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
             <img src="{$flag_path}" width="16" height="11" border="0" alt="" name="image_{$loopCounter}" style="float:left" />
             <select id="flag_{$language['lang_id']}" name="flag_{$language['lang_id']}" size="1" onchange="if(document.images) document.images['image_{$loopCounter}'].src='images/flags/'+this.options[this.selectedIndex].value+'.png';" class="listbox_lang" style="width:60px">
 EOT;
         if ($language['flag'] == '') {
-            print '            <option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$LINEBREAK;
+            echo '<option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$LINEBREAK;
         }
         foreach ($flag_array as $flags) {
             if ($flags == $language['flag']) {
@@ -451,25 +451,25 @@ EOT;
             } else {
                 $flag_selected = '';
             }
-            print '            <option style="background-image:url(images/flags/' . $flags . '.png);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$LINEBREAK;
+            echo '<option style="background-image:url(images/flags/' . $flags . '.png);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$LINEBREAK;
         }
-        print <<< EOT
+        echo <<< EOT
             </select>
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
             {$availability_output}{$new_output}
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
           {$completeness_output}
         </td>
 EOT;
-        print <<< EOT
+        echo <<< EOT
 
         <td class="{$cellstyle}">
 EOT;
@@ -478,7 +478,7 @@ EOT;
         } else {
             $enable_checked = '';
         }
-        print <<< EOT
+        echo <<< EOT
             <input type="checkbox" name="enable_{$language['lang_id']}" id="enable_{$language['lang_id']}" value="YES" class="checkbox" {$enable_checked} {$enable_greyed_out} />
         </td>
     </tr>
@@ -502,7 +502,7 @@ EOT;
 $loopCounter--; // Subtract one from counter, since we start counting from zero
 // Output warnings if applicable
 if (in_array('english', $lang_file_array) != TRUE) {
-    print <<< EOT
+    echo <<< EOT
     <tr>
         <td class="cpg_message_error" colspan="8" align="center">
             {$lang_langmgr_php['english_missing']}
@@ -513,7 +513,7 @@ EOT;
 
 // Output submit button
 $submit_icon = cpg_fetch_icon('ok', 2);
-print <<< EOT
+echo <<< EOT
     <tr>
         <td class="tablef" colspan="6" align="center">
             <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
@@ -529,7 +529,7 @@ print <<< EOT
     </tr>
 EOT;
 endtable();
-print <<< EOT
+echo <<< EOT
 </form>
 EOT;
 
