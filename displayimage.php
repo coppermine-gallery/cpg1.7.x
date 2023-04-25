@@ -160,9 +160,9 @@ function html_picinfo()
         while ($i <= $CONFIG['rating_stars_amount']) {
 
             if ($i <= $rating) {
-                $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" align="left" alt="' . $rating . '"/>';
+                $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" align="left" alt="' . $rating . '">';
             } else {
-                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" align="left" alt="' . $rating . '"/>';
+                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" align="left" alt="' . $rating . '">';
             }
 
             $i++;
@@ -241,7 +241,7 @@ function html_picinfo()
                 }
 
                 if (!empty($iptc['SubCategories'])) {
-                    $info[$lang_picinfo['iptcSubCategories']] = implode(' ', $iptc['SubCategories']);
+                    $info[$lang_picinfo['iptcSubCategories']] = is_array($iptc['SubCategories']) ? implode(' ', $iptc['SubCategories']) : $iptc['SubCategories'];
                 }
             }
         }

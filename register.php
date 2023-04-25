@@ -4,18 +4,18 @@
  *
  * v1.0 originally written by Gregory Demar
  *
- * @copyright  Copyright (c) 2003-2021 Coppermine Dev Team
+ * @copyright  Copyright (c) 2003-2023 Coppermine Dev Team
  * @license    GNU General Public License version 3 or later; see LICENSE
  *
  * register.php
- * @since  1.6.20
+ * @since  1.7.03
  */
 
 define('IN_COPPERMINE', true);
 define('REGISTER_PHP', true);
 
-require('include/init.inc.php');
-require('include/mailer.inc.php');
+require 'include/init.inc.php';
+require 'include/mailer.inc.php';
 
 if (!$CONFIG['allow_user_registration']) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -27,13 +27,13 @@ if (defined('UDB_INTEGRATION')) {
 
 js_include('js/register.js');
 
-$icon_array = array(
+$icon_array = [
     'ok'       => cpg_fetch_icon('ok', 0),
     'username' => cpg_fetch_icon('my_profile', 2),
     'password' => cpg_fetch_icon('key_enter', 2),
     'email'    => cpg_fetch_icon('contact', 2),
     'blank'    => cpg_fetch_icon('blank', 2),
-);
+];
 
 /*****************************
 * function definitions start *
@@ -113,38 +113,38 @@ EOT;
 
     $inline_disclaimer = str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_php['disclaimer']);
 
-    $form_data = array(
-        array('label', $lang_register_php['required_info']),
-        array('input', 'username', $icon_array['username'] . $lang_register_php['username'], 25),
-        !empty($CONFIG['global_registration_pw']) ? array('password', 'global_registration_pw', $icon_array['password'] . $lang_register_php['global_registration_pw'], 25) : '',
-        array('password', 'password', $icon_array['password'] . $lang_register_php['password']),
-        array('password', 'password_verification', $icon_array['password'] . $lang_register_php['password_again']),
-        array('input', 'email', $icon_array['email'] . $lang_register_php['email'], 255),
-        array('label', $lang_register_php['optional_info'])
-    );
+    $form_data = [
+        ['label', $lang_register_php['required_info']],
+        ['input', 'username', $icon_array['username'] . $lang_register_php['username'], 25],
+        !empty($CONFIG['global_registration_pw']) ? ['password', 'global_registration_pw', $icon_array['password'] . $lang_register_php['global_registration_pw'], 25] : '',
+        ['password', 'password', $icon_array['password'] . $lang_register_php['password']],
+        ['password', 'password_verification', $icon_array['password'] . $lang_register_php['password_again']],
+        ['input', 'email', $icon_array['email'] . $lang_register_php['email'], 255],
+        ['label', $lang_register_php['optional_info']]
+    ];
     $optional_data = 0;
     if ($CONFIG['user_profile1_name'] != '') {
-        $form_data[] = array('input', 'user_profile1', $icon_array['blank'] . $CONFIG['user_profile1_name'], 255);
+        $form_data[] = ['input', 'user_profile1', $icon_array['blank'] . $CONFIG['user_profile1_name'], 255];
         $optional_data++;
     }
     if ($CONFIG['user_profile2_name'] != '') {
-        $form_data[] = array('input', 'user_profile2', $icon_array['blank'] . $CONFIG['user_profile2_name'], 255);
+        $form_data[] = ['input', 'user_profile2', $icon_array['blank'] . $CONFIG['user_profile2_name'], 255];
         $optional_data++;
     }
     if ($CONFIG['user_profile3_name'] != '') {
-        $form_data[] = array('input', 'user_profile3', $icon_array['blank'] . $CONFIG['user_profile3_name'], 255);
+        $form_data[] = ['input', 'user_profile3', $icon_array['blank'] . $CONFIG['user_profile3_name'], 255];
         $optional_data++;
     }
     if ($CONFIG['user_profile4_name'] != '') {
-        $form_data[] = array('input', 'user_profile4', $icon_array['blank'] . $CONFIG['user_profile4_name'], 255);
+        $form_data[] = ['input', 'user_profile4', $icon_array['blank'] . $CONFIG['user_profile4_name'], 255];
         $optional_data++;
     }
     if ($CONFIG['user_profile5_name'] != '') {
-        $form_data[] = array('input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255);
+        $form_data[] = ['input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255];
         $optional_data++;
     }
     if ($CONFIG['user_profile6_name'] != '') {
-        $form_data[] = array('textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255);
+        $form_data[] = ['textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255];
         $optional_data++;
     }
     if ($optional_data == 0) {
@@ -154,10 +154,10 @@ EOT;
     $form_data = CPGPluginAPI::filter('register_form_create', $form_data);
 
     if ($CONFIG['user_registration_disclaimer'] == 2) {
-        $form_data[] = array('label', $lang_register_php['term_cond']);
-        $form_data[] = array('checkbox', 'agree', $inline_disclaimer, $lang_register_php['i_agree'], 1);
+        $form_data[] = ['label', $lang_register_php['term_cond']];
+        $form_data[] = ['checkbox', 'agree', $inline_disclaimer, $lang_register_php['i_agree'], 1, 1];
     } else {
-        $form_data[] = array('hidden', 'agree', 1);
+        $form_data[] = ['hidden', 'agree', 1];
     }
 
     $loopCounter = 0;
@@ -218,7 +218,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$row_style}" valign="top">
-            <input type="text" style="width: 100%" name="{$element[1]}" id="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
+            <input type="text" style="width: 100%" name="{$element[1]}" id="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
             {$warning1}
             {$warning2}
         </td>
@@ -249,9 +249,9 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$row_style}" valign="top">
-            <input type="radio" name="{$element[1]}" id="{$element[1]}1" value="{$element[3]}" class="radio" />
+            <input type="radio" name="{$element[1]}" id="{$element[1]}1" value="{$element[3]}" class="radio">
             <label for="{$element[1]}1" class="clickable_option">{$element[3]}</label>
-            <input type="radio" name="{$element[1]}" id="{$element[1]}2" value="{$element[4]}" class="radio" />
+            <input type="radio" name="{$element[1]}" id="{$element[1]}2" value="{$element[4]}" class="radio">
             <label for="{$element[1]}2" class="clickable_option">{$element[4]}</label>
         </td>
     </tr>
@@ -285,7 +285,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$row_style}" valign="top">
-            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" {$element[6]} />
+            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" {$element[6]}>
             <label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
         </td>
     </tr>
@@ -296,8 +296,8 @@ EOT;
     <tr>
         <td class="{$row_style}" colspan="2">
             {$element[2]}
-            <br />
-            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" />
+            <br>
+            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox">
             <label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
         </td>
     </tr>
@@ -353,7 +353,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$row_style}" valign="top">
-            <input type="password" style="width: 100%" name="{$element[1]}" id="{$element[1]}" value="" class="textinput" />
+            <input type="password" style="width: 100%" name="{$element[1]}" id="{$element[1]}" value="" class="textinput">
             {$warning1}
             {$warning2}
         </td>
@@ -368,7 +368,7 @@ EOT;
             echo <<< EOT
     <tr>
         <td colspan="2" class="{$row_style}">
-            <input type="hidden" name="{$element[1]}" id="{$element[1]}" value="{$element[2]}" />
+            <input type="hidden" name="{$element[1]}" id="{$element[1]}" value="{$element[2]}">
         </td>
     </tr>
 
@@ -409,8 +409,8 @@ EOT;
             {$lang_common['confirm']}&nbsp;{$help}
         </td>
         <td class="tablef">
-            <input type="text" name="confirmCode" id="confirmCode" size="5" maxlength="5" class="textinput" />
-            <img src="captcha.php" align="middle" border="0" alt="" />
+            <input type="text" name="confirmCode" id="confirmCode" size="5" maxlength="5" class="textinput">
+            <img src="captcha.php" align="middle" border="0" alt="">
         </td>
     </tr>
 EOT;
@@ -581,7 +581,7 @@ function check_user_info(&$error)
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate, user_active, user_actkey, user_name, user_password, user_password_salt, user_password_hash_algorithm, user_password_iterations, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_language) VALUES (NOW(), '$active', '$act_key', '$user_name', '{$password_params[HASH_PBKDF2_INDEX]}', '{$password_params[HASH_SALT_INDEX]}', '{$password_params[HASH_ALGORITHM_INDEX]}', '{$password_params[HASH_ITERATION_INDEX]}', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6', '{$CONFIG['lang']}')";
     $result = cpg_db_query($sql);
-    $user_array = array();
+    $user_array = [];
     $user_array['user_id'] = cpg_db_last_insert_id();
     $user_array['user_name'] = $user_name;
     $user_array['user_email'] = $email;
@@ -604,11 +604,11 @@ function check_user_info(&$error)
         // Mail the user the activation/verification link
         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
 
-        $template_vars = array(
+        $template_vars = [
             '{SITE_NAME}' => $CONFIG['gallery_name'],
             '{USER_NAME}' => $user_name,
-            '{ACT_LINK}'  => $act_link,
-        );
+            '{ACT_LINK}'  => $act_link
+        ];
 
         if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_php['confirm_email'], $template_vars)))) {
             cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
@@ -631,13 +631,13 @@ function check_user_info(&$error)
             $result = cpg_db_query("SELECT user_id, user_email, user_language FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
             while ( ($row = $result->fetchAssoc()) ) {
                 if (!empty($row['user_email'])) {
-                    $admins[$row['user_id']] = array('email' => $row['user_email'], 'lang' => $row['user_language']);
+                    $admins[$row['user_id']] = ['email' => $row['user_email'], 'lang' => $row['user_language']];
                 }
             }
             $result->free();
         } else {
             //@todo: is it possible to get the language from bridged installs?
-            $admins[] = array('email' => $CONFIG['gallery_admin_email'], 'lang' => 'english');
+            $admins[] = ['email' => $CONFIG['gallery_admin_email'], 'lang' => 'english'];
         }
         foreach($admins as $admin) {
             //check if the admin language is available
@@ -655,11 +655,11 @@ function check_user_info(&$error)
 
                 $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
 
-                $template_vars = array(
+                $template_vars = [
                     '{SITE_NAME}' => $CONFIG['gallery_name'],
                     '{USER_NAME}' => $user_name,
-                    '{ACT_LINK}' => $act_link,
-                );
+                    '{ACT_LINK}' => $act_link
+                ];
 
                 cpg_mail($admin['email'], sprintf($lang_register_php_def['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email_def, $template_vars)));
 
@@ -742,11 +742,11 @@ if ($superCage->get->keyExists('activate')) {
 
         msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_common['continue'], 'index.php');
 
-        $template_vars = array(
+        $template_vars = [
             '{SITE_LINK}' => $CONFIG['site_url'],
             '{USER_NAME}' => $row['user_name'],
-            '{SITE_NAME}' => $CONFIG['gallery_name'],
-        );
+            '{SITE_NAME}' => $CONFIG['gallery_name']
+        ];
 
         cpg_mail($row['user_email'], sprintf($lang_register_php['notify_user_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_php['activated_email'], $template_vars)));
 
@@ -760,13 +760,13 @@ if ($superCage->get->keyExists('activate')) {
             $result = cpg_db_query("SELECT user_id, user_email, user_language FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
             while ($row2 = $result->fetchAssoc()) {
                 if (!empty($row2['user_email'])) {
-                    $admins[$row2['user_id']] = array('email' => $row2['user_email'], 'lang' => $row2['user_language']);
+                    $admins[$row2['user_id']] = ['email' => $row2['user_email'], 'lang' => $row2['user_language']];
                 }
             }
             $result->free();
         } else {
             //@todo: is it possible to get the language from bridged installs?
-            $admins[] = array('email' => $CONFIG['gallery_admin_email'], 'lang' => 'english');
+            $admins[] = ['email' => $CONFIG['gallery_admin_email'], 'lang' => 'english'];
         }
         foreach($admins as $admin) {
             //check if the admin language is available
@@ -780,11 +780,11 @@ if ($superCage->get->keyExists('activate')) {
 
             $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
 
-            $template_vars = array(
+            $template_vars = [
                 '{SITE_NAME}' => $CONFIG['gallery_name'],
                 '{USER_NAME}' => $row['user_name'],
-                '{ACT_LINK}' => $act_link,
-            );
+                '{ACT_LINK}' => $act_link
+            ];
 
             cpg_mail($admin['email'], sprintf($lang_register_php_def['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email_def, $template_vars)));
         }

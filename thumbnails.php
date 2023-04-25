@@ -197,7 +197,7 @@ $meta_albums_array = array(
 );
 
 if (in_array($superCage->get->getAlpha('album'), $meta_albums_array)) {
-    $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
+    $meta_keywords .= '<meta name="robots" content="noindex, nofollow">';
 }
 
 pageheader($section, $meta_keywords);

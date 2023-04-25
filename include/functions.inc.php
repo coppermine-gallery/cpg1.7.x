@@ -250,7 +250,7 @@ function bb_decode($text)
         $replacements['other'][1] = $bbcode_tpl['email'];
 
         // [img]xxxx://www.phpbb.com[/img] code..
-        $bbcode_tpl['img'] = '<img src="{URL}" alt="" />';
+        $bbcode_tpl['img'] = '<img src="{URL}" alt="">';
         $bbcode_tpl['img'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
 
         $patterns['other'][2]     = '#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si';
@@ -382,7 +382,7 @@ function load_template()
     $template = file_get_contents($THEME_DIR . TEMPLATE_FILE);
 
     if ($template === FALSE) {
-        die("Coppermine critical error:<br />Unable to load template file " . $THEME_DIR . TEMPLATE_FILE . "!");
+        die("Coppermine critical error:<br>Unable to load template file " . $THEME_DIR . TEMPLATE_FILE . "!");
     }
 
     $template = CPGPluginAPI::filter('template_html', $template);
@@ -485,7 +485,7 @@ function template_extract_block(&$template, $block_name, $subst='')
 
     if (!preg_match($pattern, $template, $matches)) {
     	echo'<xmp>';debug_print_backtrace(0, 4);echo'</xmp>';
-        die('<strong>Template error<strong><br />Failed to find block \'' . $block_name . '\' (' . htmlspecialchars($pattern) . ') in :<br /><pre>' . htmlspecialchars($template) . '</pre>');
+        die('<strong>Template error<strong><br>Failed to find block \'' . $block_name . '\' (' . htmlspecialchars($pattern) . ') in :<br><pre>' . htmlspecialchars($template) . '</pre>');
     }
 
     $template = str_replace($matches[0], $subst, $template);
@@ -706,13 +706,13 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
             for ($i = 1; $i <= $CONFIG['rating_stars_amount']; $i++) {
 
                 if ($i <= $rating) {
-                    $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" alt="' . $rating . '"/>';
+                    $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" alt="' . $rating . '">';
                 } else {
-                    $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" alt="' . $rating . '"/>';
+                    $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" alt="' . $rating . '">';
                 }
             }
 
-            $caption .= '<span class="thumb_caption thumb_caption_rating">' . $rating_images . '<br />' . sprintf($lang_get_pic_data['n_votes'], $row['votes']) . '</span>';
+            $caption .= '<span class="thumb_caption thumb_caption_rating">' . $rating_images . '<br>' . sprintf($lang_get_pic_data['n_votes'], $row['votes']) . '</span>';
         }
 
         if (in_array('mtime', $must_have)) {
@@ -720,7 +720,7 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
             $caption .= '<span class="thumb_caption thumb_caption_mtime">' . localised_date($row['mtime'], $lang_date['lasthit']);
 
             if (GALLERY_ADMIN_MODE) {
-                $caption .= '<br />' . $row['lasthit_ip'];
+                $caption .= '<br>' . $row['lasthit_ip'];
             }
 
             $caption .= '</span>';
@@ -2612,7 +2612,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
             $thumb_list[$i]['pos']          = $key < 0 ? $key : $i - 1 + $lower_limit;
             $thumb_list[$i]['pid']          = $row['pid'];
-            $thumb_list[$i]['image']        = '<img src="' . $pic_url . '" class="image thumbnail" ' . $image_size['geom'] . ' border="0" alt="' . $row['filename'] . '" title="' . $pic_title . '" />';
+            $thumb_list[$i]['image']        = '<img src="' . $pic_url . '" class="image thumbnail" ' . $image_size['geom'] . ' alt="' . $row['filename'] . '" title="' . $pic_title . '">';
             $thumb_list[$i]['caption']      = bb_decode($row['caption_text']);
             $thumb_list[$i]['admin_menu']   = '';
             $thumb_list[$i]['aid']          = $row['aid'];
@@ -2888,7 +2888,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             $p = ($p < 0 ? 0 : $p);
 
             $thumb_list[$i]['pos']        = $key < 0 ? $key : $p;
-            $thumb_list[$i]['image']      = '<img src="' . $pic_url . '" class="strip_image" border="0" alt="' . $row['filename'] . '" title="' . $pic_title . '" />';
+            $thumb_list[$i]['image']      = '<img src="' . $pic_url . '" class="strip_image" alt="' . $row['filename'] . '" title="' . $pic_title . '">';
             $thumb_list[$i]['admin_menu'] = '';
             $thumb_list[$i]['pid']        = $row['pid'];
             $thumb_list[$i]['msg_id']     = isset($row['msg_id']) ? $row['msg_id'] : ''; // needed for get_pic_pos()
@@ -3163,7 +3163,7 @@ function cpg_debug_output()
     $debug_phpinfo_link = GALLERY_ADMIN_MODE ? '<a href="phpinfo.php" class="admin_menu">' . cpg_fetch_icon('phpinfo', 1) . $lang_cpg_debug_output['phpinfo'] . '</a> ' : '';
 
     echo <<< EOT
-    <script language="javascript" type="text/javascript">
+    <script>
 <!--
         addonload("document.getElementById('debug_output_select_all').style.display = 'inline'");
 //-->
@@ -3181,7 +3181,7 @@ EOT;
         <td valign="top" align="left" class="tableb">
             {$debug_phpinfo_link}{$debug_toggle_link}
             <span class="detail_body">
-                <button type="button" class="button" name="debug_output_select_all" style="display:none" id="debug_output_select_all" value="{$lang_cpg_debug_output['select_all']}" onclick="HighlightAll('debug.debugtext');">{$lang_cpg_debug_output['select_all']}</button><br />
+                <button type="button" class="button" name="debug_output_select_all" style="display:none" id="debug_output_select_all" value="{$lang_cpg_debug_output['select_all']}" onclick="HighlightAll('debug.debugtext');">{$lang_cpg_debug_output['select_all']}</button><br>
                 <textarea  rows="30" cols="60" class="debug_text" name="debugtext">
 EOT;
     echo "USER: ";
@@ -3587,15 +3587,15 @@ function languageSelect($parameter)
         $return .= '<div id="cpgChooseFlags" class="inline">';
         $return .= $lang_language_selection['choose_language'] . ': ';
         foreach ($lang_language_data as $language) {
-            $return .= $LINEBREAK . '<a href="' . $cpgChangeUrl . $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.png" border="0" width="16" height="11" alt="" title="';
+            $return .= $LINEBREAK . '<a href="' . $cpgChangeUrl . $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.png" width="16" height="11" alt="" title="';
             $return .= $language['english_name'];
             if ($language['english_name'] != $language['native_name'] && $language['native_name'] != '') {
                 $return .= ' / ' . $language['native_name'] ;
             }
-            $return .= '" /></a>' . $LINEBREAK;
+            $return .= '"></a>' . $LINEBREAK;
         }
-        $return .=  '<a href="' . $cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.png" border="0" width="16" height="11" alt="" title="';
-        $return .=  $lang_language_selection['reset_language'] . '" /></a>' . $LINEBREAK;
+        $return .=  '<a href="' . $cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.png" width="16" height="11" alt="" title="';
+        $return .=  $lang_language_selection['reset_language'] . '"></a>' . $LINEBREAK;
         $return .= '</div>';
         break;
 
@@ -3619,7 +3619,7 @@ function languageSelect($parameter)
         $return .=  '<option value="xxx">' . $lang_language_selection['reset_language'] . '</option>' . $LINEBREAK;
         $return .=  '</select>' . $LINEBREAK;
         $return .=  '<noscript>' . $LINEBREAK;
-        $return .=  '<input type="submit" name="language_submit" value="' . $lang_common['go'] . '" class="listbox_lang" />&nbsp;'. $LINEBREAK;
+        $return .=  '<input type="submit" name="language_submit" value="' . $lang_common['go'] . '" class="listbox_lang">&nbsp;'. $LINEBREAK;
         $return .=  '</noscript>' . $LINEBREAK;
         $return .=  '</form>' . $LINEBREAK;
         $return .=  '</div>' . $LINEBREAK;
@@ -3750,7 +3750,7 @@ EOT;
         print <<< EOT
             <tr>
               <td>
-                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <table>
                   <tr>
                     <td class="tableh1">
                       {$news_icon}{$lang_version_alert['coppermine_news']}{$help_news}
@@ -3789,7 +3789,7 @@ EOT;
             </tr>
 EOT;
         endtable();
-        print '<br />';
+        print '<br>';
         $return .= ob_get_contents();
         ob_end_clean();
     }
@@ -3824,7 +3824,7 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
     }
 
     if($icon != '*' && $icon != '?') {
-        $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" />';
+        $icon = '<img src="images/help.gif" width="13" height="11" alt="">';
     }
 
     $title_help = $lang_common['help'];
@@ -4055,46 +4055,6 @@ function cpg_get_custom_include($path = '')
     return $return;
 } // function cpg_get_custom_include
 
-
-/**
- * filter_content()
- *
- * Replace strings that match badwords with tokens indicating it has been filtered.
- *
- * @param string or array $str
- * @return string or array
- **/
-function filter_content($str)
-{
-    global $lang_bad_words, $CONFIG, $ercp;
-
-    if ($CONFIG['filter_bad_words']) {
-
-        static $ercp = array();
-
-        if (!count($ercp)) {
-            foreach ($lang_bad_words as $word) {
-                $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
-            }
-        }
-
-        if (is_array($str)) {
-
-            $new_str = array();
-
-            foreach ($str as $key => $element) {
-                $new_str[$key] = filter_content($element);
-            }
-
-            $str = $new_str;
-
-        } else {
-            $stripped_str = strip_tags($str);
-            $str          = preg_replace($ercp, '(...)', $stripped_str);
-        }
-    }
-    return $str;
-} // function filter_content
 
 function utf_strtolower($str)
 {
@@ -4460,14 +4420,14 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         curl_close($curl);
         if (strlen($body) < $minLength) {
             // Fetching the data by CURL obviously failed
-            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . '<br />'.$LINEBREAK;
+            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . '<br>'.$LINEBREAK;
         } else {
             // Fetching the data by CURL was successfull. Let's return the data
             return array("headers" => $headers, "body" => $body);
         }
     } else {
         // Curl is not available
-        $error .= $lang_get_remote_file_by_url['curl_not_available'] . '<br />' . $LINEBREAK;
+        $error .= $lang_get_remote_file_by_url['curl_not_available'] . '<br>' . $LINEBREAK;
     }
     // Now let's try FSOCKOPEN
     if ($url['host'] != '') {
@@ -4507,10 +4467,10 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
             fclose($fp);
             if (strlen($body) < $minLength) {
                 // Fetching the data by FSOCKOPEN obviously failed
-                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . '<br />' . $LINEBREAK;
+                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . '<br>' . $LINEBREAK;
             } elseif (in_array('404', $headers) == TRUE) {
                 // We got a 404 error
-                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . '<br />' . $LINEBREAK;
+                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . '<br>' . $LINEBREAK;
             } else {
                 // Fetching the data by FSOCKOPEN was successfull. Let's return the data
                 return array("headers" => $headers, "body" => $body, "error" => $error);
@@ -4546,7 +4506,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         }
         fclose($handle);
         if (strlen($body) < $minLength) {
-            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . '<br />' . $LINEBREAK;
+            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . '<br>' . $LINEBREAK;
         } else {
             // Fetching the data by FOPEN was successfull. Let's return the data
             return array("headers" => $headers, "body" => $body, "error" => $error);
@@ -4653,7 +4613,7 @@ function js_include($filename, $inline = false)
 
     // If we need to show the javascript inline then return the required html
     if ($inline) {
-        return '  <script src="'.$filename.'" type="text/javascript"></script>';
+        return '  <script src="'.$filename.'"></script>';
     } else {
         // Else add the file to js includes array which will later be used in head section
         $JS['includes'][] = $filename;
@@ -4776,7 +4736,7 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
 	}
 
     // sanitize extension
-    if ($extension != 'jpg' && $extension != 'gif') {
+    if (!in_array($extension, ['jpg','jpeg','gif','svg'])) {	//$extension != 'jpg' && $extension != 'gif') {
         $extension = 'png';
     }
 
@@ -4796,7 +4756,7 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
 
     $return .= '<img src="';
     $return .= $relative_path;
-    $return .= '" border="0" alt="" ';
+    $return .= '" alt="" ';
 
     // Add width and height attributes.
     // Actually reading the dimensions would be too time-consuming,
@@ -4812,7 +4772,7 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
         $return .= 'title="' . $title . '" ';
     }
 
-    $return .= 'class="icon" />';
+    $return .= 'class="icon">';
     if ($type == 1) {
         $return = $relative_path;
     }
@@ -5570,7 +5530,7 @@ function cpg_exif_strip_data($exifRawData, $exif_names) {
     if (is_array($exifRawData['SubIFD'])) {
         $exif = array_merge($exif, $exifRawData['SubIFD']);
     }
-    if (is_array($exifRawData['SubIFD']['MakerNote'])) {
+    if (is_array($exifRawData['SubIFD']['MakerNote'] ?? 0)) {
         $exif = array_merge($exif, $exifRawData['SubIFD']['MakerNote']);
     }
     if (isset($exifRawData['IFD1OffSet'])) {

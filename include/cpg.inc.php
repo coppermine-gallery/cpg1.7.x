@@ -71,6 +71,7 @@ $queries = [];
 
 // Initialise the $CONFIG array and some other variables
 $CONFIG = [];
+$USER = ['lang'=>'english'];
 
 $PHP_SELF = '';
 

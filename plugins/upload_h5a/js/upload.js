@@ -473,7 +473,13 @@ function H5up_done(okcount, errcnt) {
 
 	w.H5uQctrl = _qCtrl;
 
-	$ae(w, "DOMContentLoaded", function(){_setup()});
+	//$ae(w, "DOMContentLoaded", function(){_setup()});
+	// get around cloudfare highjack of DOMContentLoaded
+	$ae(document, 'readystatechange', (e) => {
+		if (e.target.readyState === 'interactive') {
+			_setup();
+		} 
+	});
 
 })(window,'uniload.php',['autorient','flistitl','title','caption','keywords','user1','user2','user3','user4']);
 
